@@ -10,8 +10,8 @@ body {
 }
 
 .grid-container {
-    width: 352px;
-    height: 352px;
+    width: 720px;
+    height: 720px;
     margin: 0 auto;
     padding: 0;
     border: 1px solid red;
@@ -21,9 +21,8 @@ body {
     float: left;
     margin: 0px;
     padding: 0px;
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
+    width: 45px;
+    height: 45px;
 }
 
 .dark {
