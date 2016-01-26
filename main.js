@@ -27,6 +27,6 @@ function setUpSquares(px){
 function reset(){
     $('.square').removeClass('dark');
     var input = prompt("How many pixels per side would you like?");
-    $('grid-container').empty();
+    $('.grid-container').empty();
     setUpSquares(input);
 }
