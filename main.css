@@ -1,10 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
-    width: 250px;
-    height: 100px;
+    width: 352px;
+    height: 352px;
+    margin: 0;
+    padding: 0;
 }
 
 .square {
-    width: 50px;
-    height: 50px;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    width: 20px;
+    height: 20px;
     border: 1px solid black;
 }
