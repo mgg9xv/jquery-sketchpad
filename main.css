@@ -3,11 +3,18 @@ body {
     padding: 0;
 }
 
-.container {
+.main-container {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+.grid-container {
     width: 352px;
     height: 352px;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    border: 1px solid red;
 }
 
 .square {
@@ -17,4 +24,12 @@ body {
     width: 20px;
     height: 20px;
     border: 1px solid black;
+}
+
+.dark {
+    background-color: black;
+}
+
+input[type=button] {
+    margin: 10px;
 }
