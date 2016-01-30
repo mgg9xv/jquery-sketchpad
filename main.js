@@ -1,15 +1,30 @@
+
+var mouse_down = false;
+
 $(document).ready(function(){
 
     setUpSquares(16);
 
-    $(document).on('mouseenter', '.square', function(){
-        $(this).addClass('dark');
+    $(document).on('mouseover', '.square', function(){
+        if(mouse_down) {
+            var color = $('input[name=paint-color]').val();
+            $(this).css('background-color', color);
+        }
     });
 
-    /*
-    $('.square').mouseleave(function(){
-        $(this).removeClass('dark');
-    }); */
+    $(document).on('mousedown', '.square', function(){
+        if(mouse_down) {
+            var color = $('input[name=paint-color]').val();
+            $(this).css('background-color', $color);
+        }
+    });
+
+    $(document).mousedown( function(){
+        mouse_down = true;
+    }).mouseup( function(){
+        mouse_down = false;
+    });
+
 });
 
 function setUpSquares(px){
@@ -25,8 +40,8 @@ function setUpSquares(px){
 }
 
 function reset(){
-    $('.square').removeClass('dark');
-    var input = prompt("How many pixels per side would you like?");
+    $('.square').css("background-color", "#ffffff");
     $('.grid-container').empty();
-    setUpSquares(input);
+    var size = $('input[name=grid-size]').val();
+    setUpSquares(size);
 }

@@ -3,13 +3,31 @@
 <head>
     <title>jQuery Sketchpad</title>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
-    <div class="main-container">
-        <input type="button" value="Reset" onclick="reset()"/>
-        <div class="grid-container"></div>
+    <div class="fluid-container">
+        <div id="control-panel" class="col-md-3">
+            <h1>jQuery Sketchpad</h1>
+            <div class="form-group form-inline">
+                <label for="grid-size">Choose a grid size:</label>
+                <input type="number" name="grid-size" value="16" min=1 max=64 class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="paint-color">Choose a color:</label>
+                <input type="color" name="paint-color" value="#000000" class="btn-block form-control"/>
+            </div>
+            <input type="button" value="Reset" onclick="reset()" class="btn btn-default btn-block"/>
+            <p>Created by Michael Gilbertson</p>
+            <p>Link to repo</p>
+        </div>
+        <div class="col-md-9">
+            <div class="grid-container"></div>
+        </div>
     </div>
 </body>
 </html>
