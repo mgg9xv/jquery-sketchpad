@@ -28,6 +28,8 @@ $(document).ready(function(){
         resize();
     });
 
+    $('input[name=paint-color]').val('#' + Math.floor(Math.random()*16777215).toString(16));
+
 });
 
 function setUpSquares(px){
