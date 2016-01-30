@@ -30,19 +30,19 @@ $(document).ready(function(){
 
     $('input[name=paint-color]').val('#' + Math.floor(Math.random()*16777215).toString(16));
 
+    $('input[name=my-checkbox]').bootstrapSwitch();
+    $('input[name=my-checkbox]').bootstrapSwitch('setSizeClass', 'mini');
+
 });
 
 function setUpSquares(px){
-    // var container_width = 720;
-    // var pixel_width = 720 / px;
     for ( var i = 0; i < px; i++) {
         $('#grid-container').append('<tr></tr>');
         for ( var j = 0; j < px; j++) {
             $('tr:last-child').append("<td class='square'></td>");
         }
     }
-    // $('.square').css('width', pixel_width.toString() );
-    // $('.square').css('height', pixel_width.toString() );
+    $('input[name=paint-color]').val('#' + Math.floor(Math.random()*16777215).toString(16));
 }
 
 function reset(){
