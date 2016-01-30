@@ -12,12 +12,12 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('mousedown', '.square', function(){
-        if(mouse_down) {
-            var color = $('input[name=paint-color]').val();
-            $(this).css('background-color', $color);
-        }
-    });
+    // $(document).on('mousedown', '.square', function(){
+    //     if(mouse_down) {
+    //         var color = $('input[name=paint-color]').val();
+    //         $(this).css('background-color', $color);
+    //     }
+    // });
 
     $(document).mousedown( function(){
         mouse_down = true;
