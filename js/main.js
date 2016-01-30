@@ -34,9 +34,9 @@ $(document).ready(function(){
     $('input[name=my-checkbox]').bootstrapSwitch('state', true);
     $('input[name=my-checkbox]').on('switchChange.bootstrapSwitch', function (event, state) {
         if(state) {
-            $('table td').css('border','1px solid lightblue');
+            $('table, th, td ').css('border','1px solid lightblue');
         } else {
-            $('table td').css('border','0');
+            $('table, th, td ').css('border','0');
         }
     });
 
