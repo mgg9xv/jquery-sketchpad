@@ -9,13 +9,15 @@ body {
 
 .fluid-container {
     height:100%;
+    background-image: url("grey-texture.png");
 }
 
 
-.grid-container {
-    width: 720px;
+#grid-container {
     height: 720px;
-    border: 1px solid blue;
+    width: 720px;
+    margin: 0 auto;
+    background-color: white;
 }
 
 .square {
@@ -26,13 +28,9 @@ body {
     height: 45px;
 }
 
-.dark {
-    background-color: black;
-}
-
 #control-panel {
     height: 100%;
-    background-color: lightgray;
+    background-color: darkgray;
 }
 
 input[type=button] {
