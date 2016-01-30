@@ -1,5 +1,6 @@
 html,body {
     height:100%;
+    background-image: url("../images/grey-texture.png");
 }
 
 body {
@@ -9,7 +10,6 @@ body {
 
 .fluid-container {
     height:100%;
-    background-image: url("../images/grey-texture.png");
 }
 
 
@@ -27,8 +27,6 @@ table {
 table, th, td {
     border: 1px solid lightblue;
 }
-
-
 
 #control-panel {
     height: 100%;

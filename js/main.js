@@ -31,7 +31,14 @@ $(document).ready(function(){
     $('input[name=paint-color]').val('#' + Math.floor(Math.random()*16777215).toString(16));
 
     $('input[name=my-checkbox]').bootstrapSwitch();
-    $('input[name=my-checkbox]').bootstrapSwitch('setSizeClass', 'mini');
+    $('input[name=my-checkbox]').bootstrapSwitch('state', true);
+    $('input[name=my-checkbox]').on('switchChange.bootstrapSwitch', function (event, state) {
+        if(state) {
+            $('table td').css('border','1px solid lightblue');
+        } else {
+            $('table td').css('border','0');
+        }
+    });
 
 });
 
@@ -60,5 +67,9 @@ function resize(){
     if( height < width) {
         $('#grid-container').height(height - 100);
         $('#grid-container').width(height - 100);
+    } else {
+        $('#grid-container').height(width - 100);
+        $('#grid-container').width(width - 100);
     }
+
 }
