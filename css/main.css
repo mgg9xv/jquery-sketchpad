@@ -1,0 +1,45 @@
+html,body {
+    height:100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.fluid-container {
+    height:100%;
+    background-image: url("../images/grey-texture.png");
+}
+
+
+#grid-container {
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: white;
+    border
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid lightblue;
+}
+
+
+
+#control-panel {
+    height: 100%;
+    background-color: darkgray;
+}
+
+#grid-panel {
+    height: 100%;
+}
+
+input[type=button] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
