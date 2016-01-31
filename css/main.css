@@ -1,6 +1,6 @@
 html,body {
     height:100%;
-    background-image: url("../images/grey-texture.png");
+    background-image: url("../images/wood_floor_by_gnrbishop.jpg");
 }
 
 body {
@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
     margin-top: 50px;
     background-color: white;
-    border
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 table {
@@ -30,7 +30,8 @@ table, th, td {
 
 #control-panel {
     height: 100%;
-    background-color: darkgray;
+    background-color: steelblue;
+    color: white;
 }
 
 #grid-panel {
@@ -40,4 +41,14 @@ table, th, td {
 input[type=button] {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.bottom-right {
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+img {
+    margin: 10px;
 }
