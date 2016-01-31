@@ -40,6 +40,10 @@ $(document).ready(function(){
         }
     });
 
+    document.getElementById('download-button').addEventListener('click', function() {
+        hello(this);
+    }, false);
+
 });
 
 function setUpSquares(px){
@@ -71,5 +75,30 @@ function resize(){
         $('#grid-container').height(width - 100);
         $('#grid-container').width(width - 100);
     }
+}
 
+function hello(link){
+    var canvas=document.createElement("canvas");
+    var ctx=canvas.getContext("2d");
+    var pixels = $('input[name=grid-size]').val();
+    canvas.width=pixels;
+    canvas.height=pixels;
+    var imgData=ctx.getImageData(0,0,pixels,pixels);
+    var data=imgData.data;
+    for(var i=0;i<data.length;i+=4){
+        var pixel_index = (i / 4);
+        var colors = $('tr td:eq(' + pixel_index + ')').css('background-color');
+        colors = colors.replace("rgb(", '');
+        colors = colors.replace(")",'');
+        colors = colors.replace(/,/g,'');
+        var rgb = colors.split(' ');
+        data[i]= rgb[0];
+        data[i+1]= rgb[1];
+        data[i+2]= rgb[2];
+        data[i+3]= 255;
+    }
+    ctx.putImageData(imgData,0,0);
+    var button = $('#download-button');
+    link.href= canvas.toDataURL();
+    link.download = 'image.png';
 }
