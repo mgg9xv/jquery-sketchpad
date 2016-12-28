@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
     var state = {
-        drawing: false
+        drawing: false,
+        gridSize: 16
     };
 
-    setUpSquares(16);
+    setUpSquares(state.gridSize);
     resize();
 
     $(document).on('mousedown','.square', function(){
@@ -80,11 +81,11 @@ function resize(){
 }
 
 function downloadImage(link){
-    var canvas=document.createElement("canvas");
-    var ctx=canvas.getContext("2d");
-    var pixels = $('input[name=grid-size]').val();
-    canvas.width=pixels;
-    canvas.height=pixels;
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    var pixels = state.gridSize;
+    canvas.width = pixels;
+    canvas.height = pixels;
     var imgData=ctx.getImageData(0,0,pixels,pixels);
     var data=imgData.data;
     for(var i=0;i<data.length;i+=4){
@@ -100,7 +101,9 @@ function downloadImage(link){
         data[i+3]= 255;
     }
     ctx.putImageData(imgData,0,0);
-    var button = $('#download-button');
     link.href= canvas.toDataURL();
-    link.download = 'image.png';
+
+    //Get file name to save image under
+    var fileName = $('#file-name-input').val();
+    link.download = fileName ? fileName : 'image.png';
 }
