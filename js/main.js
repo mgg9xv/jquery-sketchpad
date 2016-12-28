@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-    var drawing = false;
+    var state = {
+        drawing: false
+    };
 
     setUpSquares(16);
     resize();
@@ -8,18 +10,18 @@ $(document).ready(function(){
     $(document).on('mousedown','.square', function(){
         var color = $('input[name=paint-color]').val();
         $(this).css('background-color', color);
-        drawing = true;
+        state.drawing = true;
     });
 
     $(document).on('mouseover','.square', function(){
-        if (drawing) {
+        if (state.drawing) {
             var color = $('input[name=paint-color]').val();
             $(this).css('background-color', color);
         }
     });
 
     $(document).mouseup(function(){
-        drawing = false;
+        state.drawing = false;
     });
 
     $(window).resize(function(){
@@ -39,6 +41,17 @@ $(document).ready(function(){
         downloadImage(this);
     }, false);
 
+    $('#reset-grid-button').on('click', function(){
+        resetGrid();
+    });
+
+    function resetGrid(){
+        $('.square').css("background-color", "transparent");
+        $('#grid-container').empty();
+        var size = $('input[name=grid-size]').val();
+        setUpSquares(size);
+    }
+
 });
 
 function setUpSquares(px){
@@ -50,12 +63,7 @@ function setUpSquares(px){
     }
 }
 
-function reset(){
-    $('.square').css("background-color", "#ffffff");
-    $('#grid-container').empty();
-    var size = $('input[name=grid-size]').val();
-    setUpSquares(size);
-}
+
 
 function resize(){
     var width = $('#grid-panel').width();
