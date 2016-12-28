@@ -1,7 +1,6 @@
-
-var drawing = false;
-
 $(document).ready(function(){
+
+    var drawing = false;
 
     setUpSquares(16);
     resize();
@@ -10,7 +9,6 @@ $(document).ready(function(){
         var color = $('input[name=paint-color]').val();
         $(this).css('background-color', color);
         drawing = true;
-        console.log('drawing...');
     });
 
     $(document).on('mouseover','.square', function(){
@@ -28,20 +26,17 @@ $(document).ready(function(){
         resize();
     });
 
-    $('input[name=paint-color]').val('#' + Math.floor(Math.random()*16777215).toString(16));
-
-    $('input[name=my-checkbox]').bootstrapSwitch();
-    $('input[name=my-checkbox]').bootstrapSwitch('state', true);
-    $('input[name=my-checkbox]').on('switchChange.bootstrapSwitch', function (event, state) {
-        if(state) {
-            $('table, th, td ').css('border','1px solid lightblue');
+    // Toggle grid lines based on grid-toggle checkbox
+    $('#grid-toggle').change(function (event) {
+        if(this.checked) {
+            $('table, th, td ').css('border','1px solid steelblue');
         } else {
             $('table, th, td ').css('border','0');
         }
     });
 
     document.getElementById('download-button').addEventListener('click', function() {
-        hello(this);
+        downloadImage(this);
     }, false);
 
 });
@@ -53,7 +48,6 @@ function setUpSquares(px){
             $('tr:last-child').append("<td class='square'></td>");
         }
     }
-    $('input[name=paint-color]').val('#' + Math.floor(Math.random()*16777215).toString(16));
 }
 
 function reset(){
@@ -77,7 +71,7 @@ function resize(){
     }
 }
 
-function hello(link){
+function downloadImage(link){
     var canvas=document.createElement("canvas");
     var ctx=canvas.getContext("2d");
     var pixels = $('input[name=grid-size]').val();
