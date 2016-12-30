@@ -46,7 +46,10 @@ $(document).ready(function(){
         resetGrid();
     });
 
-    $('#grid-size-input').change(updatePaintPreview);
+    $('#grid-size-input').change(function updateGridSizeInput(){
+        var newSize = this.value;
+        $('#grid-size-addon').text('x' + newSize);
+    });
 
     $('#paint-color-input').change(updatePaintPreview);
     $('#paint-opacity-input').change(updatePaintPreview);
@@ -61,7 +64,6 @@ $(document).ready(function(){
             ',' + hexToB(paintColor) +
             ',' + paintOpacity / 100 + ')';
 
-        $('#paint-preview').text(state.paintRGBA);
         $('#paint-preview').css('background-color', state.paintRGBA);
     }
 

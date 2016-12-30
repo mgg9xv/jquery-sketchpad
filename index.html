@@ -6,9 +6,10 @@
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 
         <!-- CSS Dependencies -->
-        <link rel="stylesheet" type="text/css" href="./css/main.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+        <link href="./css/main.css" rel="stylesheet" type="text/css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet" type="text/css" >
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
 
     </head>
     <body>
@@ -18,9 +19,6 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <h1>pixelpad</h1>
-                            <a class="align-right" href="https://github.com/mggwxyz/pixelpad">
-                                <img src="./images/black-github-mark.svg" width="32px">
-                            </a>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -57,7 +55,7 @@
                         <div class="col-xs-8">
                             <label for="grid-size">Grid Size</label>
                             <div class="input-group">
-                                <input type="number" name="grid-size" value="16" min="1" max="64" class="form-control"
+                                <input id="grid-size-input" type="number" name="grid-size" value="16" min="1" max="64" class="form-control"
                                     aria-describedby="grid-size-addon">
                                 <span class="input-group-addon" id="grid-size-addon">x16</span>
                             </div>
@@ -65,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <div class="text-center">
-                            <input id="reset-button" type="button" value="Reset Grid" class="btn btn-default btn-block">
+                            <input id="reset-grid-button" type="button" value="Reset Grid" class="btn btn-default btn-block">
                         </div>
                     </div>
                     <form>
@@ -79,6 +77,9 @@
                             </div>
                         </div>
                     </form>
+                    <a class="bottom-right" href="https://github.com/mggwxyz/pixelpad">
+                        <img src="./images/black-github-mark.svg" width="32px">
+                    </a>
                 </div>
                 <div id="grid-panel" class="full-height col-md-9 col-sm-8 col-xs-12">
                     <table id="grid-container"></table>

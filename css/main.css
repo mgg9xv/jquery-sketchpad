@@ -1,6 +1,7 @@
 html,body {
     height: 100%;
     weight: 100%;
+    font-family: 'VT323', monospace;
 }
 
 h1 {
@@ -14,6 +15,7 @@ body {
 
 .background {
     background-color: #eeeeee;
+    font-family: 'VT323', monospace;
 }
 
 .full-height {
@@ -66,9 +68,13 @@ input[type=button] {
     margin-bottom: 10px;
 }
 
-.top-right {
+.center-child  {
+    text-align: center;
+}
+
+.bottom-right {
     right: 0;
-    top: 0;
+    bottom: 0;
     position: absolute;
 }
 
