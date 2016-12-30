@@ -2,22 +2,22 @@ $(document).ready(function(){
 
     var state = {
         drawing: false,
-        gridSize: 16
+        gridSize: 16,
+        paintRGBA: 'rgba(255,255,255,1)'
     };
 
     setUpSquares(state.gridSize);
     resize();
+    updatePaintPreview();
 
     $(document).on('mousedown','.square', function(){
-        var color = $('input[name=paint-color]').val();
-        $(this).css('background-color', color);
+        $(this).css('background-color', state.paintRGBA);
         state.drawing = true;
     });
 
     $(document).on('mouseover','.square', function(){
         if (state.drawing) {
-            var color = $('input[name=paint-color]').val();
-            $(this).css('background-color', color);
+            $(this).css('background-color', state.paintRGBA);
         }
     });
 
@@ -32,7 +32,7 @@ $(document).ready(function(){
     // Toggle grid lines based on grid-toggle checkbox
     $('#grid-toggle').change(function (event) {
         if(this.checked) {
-            $('table, th, td ').css('border','1px solid steelblue');
+            $('table, th, td ').css('border','1px solid black');
         } else {
             $('table, th, td ').css('border','0');
         }
@@ -46,12 +46,88 @@ $(document).ready(function(){
         resetGrid();
     });
 
+    $('#grid-size-input').change(updatePaintPreview);
+
+    $('#paint-color-input').change(updatePaintPreview);
+    $('#paint-opacity-input').change(updatePaintPreview);
+
+    // Updates the paint preview component when color or opacity changes
+    function updatePaintPreview() {
+        var paintColor = $('#paint-color-input').val();
+        var paintOpacity = $('#paint-opacity-input').val();
+
+        state.paintRGBA = 'rgba(' + hexToR(paintColor) +
+            ',' + hexToG(paintColor) +
+            ',' + hexToB(paintColor) +
+            ',' + paintOpacity / 100 + ')';
+
+        $('#paint-preview').text(state.paintRGBA);
+        $('#paint-preview').css('background-color', state.paintRGBA);
+    }
+
+
     function resetGrid(){
         $('.square').css("background-color", "transparent");
         $('#grid-container').empty();
         var size = $('input[name=grid-size]').val();
         setUpSquares(size);
     }
+
+    function downloadImage(link){
+        // Setup an HTML canvas that isn't added to DOM but used to create a png
+        // that the user downloads
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        var pixels = state.gridSize;
+        canvas.width = pixels;
+        canvas.height = pixels;
+
+        // Get canvas imageData so that we can loop through it
+        var imgData = ctx.getImageData(0,0,pixels,pixels);
+        var data = imgData.data;
+
+        for( var i = 0; i < data.length; i += 4){
+            // Get the background-color css attribute of each grid cell
+            var rgba = [];
+            var pixel_index = (i / 4);
+            var backgroundColor = $('tr td:eq(' + pixel_index + ')').css('background-color');
+
+            // Parse out RGB value from the background-color attribute
+            if( backgroundColor.indexOf('rgba') === -1) {
+                backgroundColor = backgroundColor.replace("rgb(", '');
+                backgroundColor = backgroundColor.replace(")",'');
+                backgroundColor = backgroundColor.replace(/,/g,'');
+                rgba = backgroundColor.split(' ');
+                rgba.push(1);
+            } else {
+                backgroundColor = backgroundColor.replace("rgba(", '');
+                backgroundColor = backgroundColor.replace(")",'');
+                backgroundColor = backgroundColor.replace(/,/g,'');
+                rgba = backgroundColor.split(' ');
+            }
+
+
+            // Set the canvas pixel data to match the grid cell color
+            data[i] = parseInt(rgba[0]); // red
+            data[i+1] = parseInt(rgba[1]); // green
+            data[i+2] = parseInt(rgba[2]); // blue
+            data[i+3] = rgba[3] * 255; // opacity
+
+        }
+        imgData.data = data;
+        ctx.putImageData(imgData,0,0);
+        link.href= canvas.toDataURL();
+
+        //Get file name to save image under
+        var fileName = $('#file-name-input').val();
+        link.download = fileName ? fileName : 'image.png';
+    }
+
+    // Taken from http://www.javascripter.net/faq/hextorgb.htm
+    function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16);}
+    function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16);}
+    function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16);}
+    function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h;}
 
 });
 
@@ -68,9 +144,7 @@ function setUpSquares(px){
 
 function resize(){
     var width = $('#grid-panel').width();
-    console.log("Width: " + width);
     var height = $('#grid-panel').height();
-    console.log("Height: " + height);
     if( height < width) {
         $('#grid-container').height(height - 100);
         $('#grid-container').width(height - 100);
@@ -78,32 +152,4 @@ function resize(){
         $('#grid-container').height(width - 100);
         $('#grid-container').width(width - 100);
     }
-}
-
-function downloadImage(link){
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
-    var pixels = state.gridSize;
-    canvas.width = pixels;
-    canvas.height = pixels;
-    var imgData=ctx.getImageData(0,0,pixels,pixels);
-    var data=imgData.data;
-    for(var i=0;i<data.length;i+=4){
-        var pixel_index = (i / 4);
-        var colors = $('tr td:eq(' + pixel_index + ')').css('background-color');
-        colors = colors.replace("rgb(", '');
-        colors = colors.replace(")",'');
-        colors = colors.replace(/,/g,'');
-        var rgb = colors.split(' ');
-        data[i]= rgb[0];
-        data[i+1]= rgb[1];
-        data[i+2]= rgb[2];
-        data[i+3]= 255;
-    }
-    ctx.putImageData(imgData,0,0);
-    link.href= canvas.toDataURL();
-
-    //Get file name to save image under
-    var fileName = $('#file-name-input').val();
-    link.download = fileName ? fileName : 'image.png';
 }

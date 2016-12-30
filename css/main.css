@@ -1,7 +1,6 @@
 html,body {
     height: 100%;
     weight: 100%;
-    background-color: white;
 }
 
 h1 {
@@ -13,33 +12,49 @@ body {
     padding: 0;
 }
 
+.background {
+    background-color: #eeeeee;
+}
+
 .full-height {
     height: 100%;
 }
 
-.background {
-    background-color: white;
+
+#paint-preview {
+    text-align: center;
+}
+
+#grid-toggle {
+    vertical-align: middle;
+    display: block;
+    text-align: center;
+    font-size: 32px;
+    margin: 0 auto;
+    padding: 6px 12px;
 }
 
 #grid-container {
     margin: 0 auto;
     margin-top: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid black;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 table {
     border-collapse: collapse;
-    border: 1px solid steelblue;
+    border: 1px solid black;
 }
 
 th, td {
-    border: 1px solid steelblue;
+    border: 1px solid black;
 }
 
 #control-panel {
     height: 100%;
-    background-color: steelblue;
-    color: white;
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #grid-panel {
