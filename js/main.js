@@ -3,7 +3,7 @@ $(document).ready(function(){
     var state = {
         drawing: false,
         gridSize: 16,
-        paintRGBA: 'rgba(255,255,255,1)'
+        paintRGBA: 'rgba(0,128,255,1)'
     };
 
     setUpSquares(state.gridSize);
@@ -70,7 +70,7 @@ $(document).ready(function(){
 
     function resetGrid(){
         $('.square').css("background-color", "transparent");
-        $('#grid-container').empty();
+        $('#grid-table').empty();
         var size = $('input[name=grid-size]').val();
         setUpSquares(size);
     }
@@ -148,10 +148,10 @@ function resize(){
     var width = $('#grid-panel').width();
     var height = $('#grid-panel').height();
     if( height < width) {
-        $('#grid-container').height(height - 16);
-        $('#grid-container').width(height - 16);
+        $('#grid-container').height(height - (height * 0.1));
+        $('#grid-container').width(height - (height * 0.1));
     } else {
-        $('#grid-container').height(width - 16);
-        $('#grid-container').width(width - 16);
+        $('#grid-container').height(width - (width * 0.1));
+        $('#grid-container').width(width - (width * 0.1));
     }
 }
