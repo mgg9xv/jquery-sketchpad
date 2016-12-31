@@ -135,7 +135,7 @@ $(document).ready(function(){
 
 function setUpSquares(px){
     for ( var i = 0; i < px; i++) {
-        $('#grid-container').append('<tr></tr>');
+        $('#grid-table').append('<tr></tr>');
         for ( var j = 0; j < px; j++) {
             $('tr:last-child').append("<td class='square'></td>");
         }
@@ -148,10 +148,10 @@ function resize(){
     var width = $('#grid-panel').width();
     var height = $('#grid-panel').height();
     if( height < width) {
-        $('#grid-container').height(height - 100);
-        $('#grid-container').width(height - 100);
+        $('#grid-container').height(height - 16);
+        $('#grid-container').width(height - 16);
     } else {
-        $('#grid-container').height(width - 100);
-        $('#grid-container').width(width - 100);
+        $('#grid-container').height(width - 16);
+        $('#grid-container').width(width - 16);
     }
 }
