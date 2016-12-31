@@ -67,6 +67,23 @@ $(document).ready(function(){
         $('#paint-preview').css('background-color', state.paintRGBA);
     }
 
+    $('#control-section-button').click(changeMenuState);
+
+    // Animates the menu sidebar to open or close
+    function changeMenuState(){
+        console.log('toggle menu state');
+        var controlSection = $('#control-section');
+        var gridSection = $('#grid-section');
+        controlSection.toggleClass('control-section-visible');
+        gridSection.toggleClass('grid-section-visible');
+        // // Resize map and pan back to center
+        // setTimeout(function () {
+        //     var content = infoWindow.getContent();
+        //     google.maps.event.trigger(map, 'resize');
+        //     map.panTo(position);
+        //     infoWindow.setContent(content);
+        // }, 500);
+    }
 
     function resetGrid(){
         $('.square').css("background-color", "transparent");
@@ -148,10 +165,10 @@ function resize(){
     var width = $('#grid-panel').width();
     var height = $('#grid-panel').height();
     if( height < width) {
-        $('#grid-container').height(height - (height * 0.1));
-        $('#grid-container').width(height - (height * 0.1));
+        $('#grid-container').height(height - (height * 0.05));
+        $('#grid-container').width(height - (height * 0.05));
     } else {
-        $('#grid-container').height(width - (width * 0.1));
-        $('#grid-container').width(width - (width * 0.1));
+        $('#grid-container').height(width - (width * 0.05));
+        $('#grid-container').width(width - (width * 0.05));
     }
 }
