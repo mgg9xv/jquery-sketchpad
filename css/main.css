@@ -5,23 +5,48 @@ html,body {
     padding: 0;
 }
 
+#main-navigation {
+    margin: 0;
+    background-color: white;
+    height: 54px;
+    width: 100%;
+    align-text: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#main-section {
+    height: calc(100% - 54px);
+    position: relative;
+}
+
 #main-heading {
-    margin: 0 0 15px 0;
+    margin: 4px 0 0 0;
     display: inline-block;
 }
 
 #main-container {
     height: 100%;
+    weight: 100%;
     background-color: #eeeeee;
     font-family: 'VT323', monospace;
+}
+
+.nav-button {
+    margin: 8px 16px;
 }
 
 .full-height {
     height: 100%;
 }
 
+.center-text {
+    text-align: center;
+}
+
 
 #paint-preview {
+    border: 1px solid #cccccc;
     text-align: center;
 }
 
@@ -61,7 +86,74 @@ th, td {
 
 #control-panel {
     height: 100%;
+    overflow-y: scroll;
     background-color: white;
     color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 400px) {
+    html, body {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        font-family: Helvetica;
+    }
+}
+
+#control-section {
+    z-index: 5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s;
+    transform: translateX(-100%);
+}
+
+#control-section.control-section-visible {
+    transform: translateX(0%);
+}
+
+#grid-section {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform: translateX(0%);
+}
+
+.grid-section-visible {
+    transform: translateX()
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+    #control-section {
+        will-change: transform;
+        z-index: 5;
+        position: absolute;
+        height: 100%;
+        width: 25%;
+        transition: transform 0.5s ease-in 0s;
+        transform: translateX(-100%);
+    }
+
+    #control-section.control-section-visible {
+        transform: translateX(0%);
+    }
+
+    #grid-section {
+        will-change: transform;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease-in 0s, width 0.5s ease-in 0s;
+        transform: translateX(0%);
+    }
+
+    #grid-section.grid-section-visible {
+        width: 75%;
+        transform: translateX(33.33%);
+    }
+
 }
