@@ -3,104 +3,102 @@
     <head>
         <title>Pixelpad</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="./images/pixelpad-icon-1.png">
+        <link href="./images/pixelpad-favicon.png" rel="icon" type="image/x-icon">
 
         <!-- CSS Dependencies -->
-        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet" type="text/css">
         <link href="./css/main.css" rel="stylesheet" type="text/css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet" type="text/css" >
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet" type="text/css">
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
         <div id="main-container" class="container-fluid">
-            <div class="row full-height">
-                <nav id="main-navigation">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <button id="control-section-button" class="btn btn-default nav-button">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                            </button>
-                        </div>
-                        <div class="col-xs-6 center-text">
-                            <h1 id="main-heading">Pixelpad</h1>
-                        </div>
-                        <div class="col-xs-3">
-                            <a class="pull-right btn btn-default nav-button" href="https://github.com/mggwxyz/pixelpad">
-                                <img src="./images/black-github-mark.svg">
-                            </a>
-                        </div>
+            <nav id="main-navigation">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <button id="control-section-button" class="btn btn-default nav-button">
+                            <span class="glyphicon glyphicon-menu-hamburger"></span>
+                        </button>
                     </div>
-                </nav>
-                <main id="main-section">
-                    <section id="control-section">
-                        <div id="control-panel" class="full-height col-xs-12">
-                            <br>
-                            <div class="row form-group">
-                                <div class="col-xs-6">
-                                    <label for="paint-color">Paint Color</label><br>
-                                    <input id="paint-color-input" type="color" name="paint-color" value="#0080ff" class="btn-block form-control">
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="paint-opacity">Paint Opacity</label><br>
-                                    <div class="input-group">
-                                        <input id="paint-opacity-input" class="btn-block form-control"
-                                            aria-describedby="opacity-addon"
-                                            type="number"
-                                            min="0"
-                                            max="100"
-                                            value="100">
-                                        <span class="input-group-addon" id="opacity-addon">%</span>
-                                    </div>
+                    <div class="col-xs-6 center-text">
+                        <h1 id="main-heading">Pixelpad</h1>
+                    </div>
+                    <div class="col-xs-3">
+                        <a class="pull-right btn btn-default nav-button" href="https://github.com/mggwxyz/pixelpad">
+                            <img src="./images/github-mark.svg">
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <main id="main-section">
+                <section id="control-section">
+                    <div id="control-panel" class="full-height col-xs-12">
+                        <br>
+                        <div class="row form-group">
+                            <div class="col-xs-6">
+                                <label for="paint-color">Paint Color</label><br>
+                                <input id="paint-color-input" type="color" name="paint-color" value="#0080ff" class="btn-block form-control">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="paint-opacity">Paint Opacity</label><br>
+                                <div class="input-group">
+                                    <input id="paint-opacity-input" class="btn-block form-control"
+                                        aria-describedby="opacity-addon"
+                                        type="number"
+                                        min="0"
+                                        max="100"
+                                        value="100">
+                                    <span class="input-group-addon" id="opacity-addon">%</span>
                                 </div>
                             </div>
-                            <div class="row form-group">
-                                <div class="col-xs-12">
-                                    <label>Paint Preview</label>
-                                    <div id="paint-preview" class="btn btn-block">&nbsp;</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-12">
+                                <label>Paint Preview</label>
+                                <div id="paint-preview" class="btn btn-block">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-6">
+                                <label for="grid-size">Grid Size</label>
+                                <div class="input-group">
+                                    <input id="grid-size-input" type="number" name="grid-size" value="16" min="1" max="64" class="form-control"
+                                        aria-describedby="grid-size-addon">
+                                    <span class="input-group-addon" id="grid-size-addon">x16</span>
                                 </div>
                             </div>
-                            <div class="row form-group">
-                                <div class="col-xs-6">
-                                    <label for="grid-size">Grid Size</label>
-                                    <div class="input-group">
-                                        <input id="grid-size-input" type="number" name="grid-size" value="16" min="1" max="64" class="form-control"
-                                            aria-describedby="grid-size-addon">
-                                        <span class="input-group-addon" id="grid-size-addon">x16</span>
-                                    </div>
+                            <div class="col-xs-6">
+                                <br>
+                                <div class="checkbox">
+                                    <label><input id="grid-toggle" type="checkbox" value="" checked>Grid Lines</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <br>
-                                    <div class="checkbox">
-                                        <label><input id="grid-toggle" type="checkbox" value="" checked>Grid Lines</label>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="text-center">
+                                <input id="reset-grid-button" type="button" value="Reset Grid" class="btn btn-default btn-block">
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="file-name-input">File Name</label>
+                                <input id="file-name-input" class="btn-block form-control" type="text" placeholder="Ex. favicon.png">
                             </div>
                             <div class="form-group">
-                                <div class="text-center">
-                                    <input id="reset-grid-button" type="button" value="Reset Grid" class="btn btn-default btn-block">
-                                </div>
+                                <input id="download-button" class="btn btn-primary btn-block text-center" value="Download Image">
                             </div>
-                            <form>
-                                <div class="form-group">
-                                    <label for="file-name-input">File Name</label>
-                                    <input id="file-name-input" class="btn-block form-control" type="text" placeholder="Ex. favicon.png">
-                                </div>
-                                <div class="form-group">
-                                    <input id="download-button" class="btn btn-primary btn-block text-center" value="Download Image">
-                                </div>
-                            </form>
+                        </form>
+                    </div>
+                </section>
+                <section id="grid-section">
+                    <div id="grid-panel" class="full-height col-xs-12">
+                        <div id="grid-container">
+                            <table id="grid-table"></table>
                         </div>
-                    </section>
-                    <section id="grid-section">
-                        <div id="grid-panel" class="full-height col-xs-12">
-                            <div id="grid-container">
-                                <table id="grid-table"></table>
-                            </div>
-                        </div>
-                    </section>
-                </main>
-            </div>
+                    </div>
+                </section>
+            </main>
         </div>
 
         <!-- JavaScript Dependencies -->
