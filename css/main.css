@@ -5,6 +5,15 @@ html,body {
     padding: 0;
 }
 
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
 #main-navigation {
     margin: 0;
     background-color: white;
@@ -28,22 +37,10 @@ html,body {
 #main-container {
     height: 100%;
     weight: 100%;
+    padding: 0;
     background-color: #eeeeee;
     font-family: 'VT323', monospace;
 }
-
-.nav-button {
-    margin: 8px 16px;
-}
-
-.full-height {
-    height: 100%;
-}
-
-.center-text {
-    text-align: center;
-}
-
 
 #paint-preview {
     border: 1px solid #cccccc;
@@ -75,30 +72,12 @@ html,body {
     height: 100%;
 }
 
-table {
-    border-collapse: collapse;
-    border: 1px solid black;
-}
-
-th, td {
-    border: 1px solid black;
-}
-
 #control-panel {
     height: 100%;
-    overflow-y: scroll;
+    overflow: hidden;
     background-color: white;
     color: black;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
-}
-
-@media screen and (min-width: 400px) {
-    html, body {
-        width: 100%;
-        height: 100%;
-        font-size: 16px;
-        font-family: Helvetica;
-    }
 }
 
 #control-section {
@@ -121,8 +100,20 @@ th, td {
     transform: translateX(0%);
 }
 
-.grid-section-visible {
-    transform: translateX()
+#grid-section.grid-section-visible {
+    transform: translateX(0%);
+}
+
+.nav-button {
+    margin: 8px 16px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.center-text {
+    text-align: center;
 }
 
 /* Small Devices, Tablets */

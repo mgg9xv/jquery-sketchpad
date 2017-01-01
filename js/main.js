@@ -1,60 +1,18 @@
 $(document).ready(function(){
 
+    // Initialize state
     var state = {
         drawing: false,
         gridSize: 16,
         paintRGBA: 'rgba(0,128,255,1)'
     };
 
-    setUpSquares(state.gridSize);
-    resize();
+    // Initializing functions
+    setupPixelGrid(state.gridSize);
+    resizePixelGrid();
     updatePaintPreview();
 
-    $(document).on('mousedown','.square', function(){
-        $(this).css('background-color', state.paintRGBA);
-        state.drawing = true;
-    });
-
-    $(document).on('mouseover','.square', function(){
-        if (state.drawing) {
-            $(this).css('background-color', state.paintRGBA);
-        }
-    });
-
-    $(document).mouseup(function(){
-        state.drawing = false;
-    });
-
-    $(window).resize(function(){
-        resize();
-    });
-
-    // Toggle grid lines based on grid-toggle checkbox
-    $('#grid-toggle').change(function (event) {
-        if(this.checked) {
-            $('table, th, td ').css('border','1px solid black');
-        } else {
-            $('table, th, td ').css('border','0');
-        }
-    });
-
-    document.getElementById('download-button').addEventListener('click', function() {
-        downloadImage(this);
-    }, false);
-
-    $('#reset-grid-button').on('click', function(){
-        resetGrid();
-    });
-
-    $('#grid-size-input').change(function updateGridSizeInput(){
-        var newSize = this.value;
-        $('#grid-size-addon').text('x' + newSize);
-    });
-
-    $('#paint-color-input').change(updatePaintPreview);
-    $('#paint-opacity-input').change(updatePaintPreview);
-
-    // Updates the paint preview component when color or opacity changes
+    // Updates the paint/paint preview component when color or opacity changes
     function updatePaintPreview() {
         var paintColor = $('#paint-color-input').val();
         var paintOpacity = $('#paint-opacity-input').val();
@@ -67,32 +25,35 @@ $(document).ready(function(){
         $('#paint-preview').css('background-color', state.paintRGBA);
     }
 
-    $('#control-section-button').click(changeMenuState);
-
     // Animates the menu sidebar to open or close
-    function changeMenuState(){
-        console.log('toggle menu state');
+    function changeMenuState () {
         var controlSection = $('#control-section');
         var gridSection = $('#grid-section');
         controlSection.toggleClass('control-section-visible');
         gridSection.toggleClass('grid-section-visible');
-        // // Resize map and pan back to center
-        // setTimeout(function () {
-        //     var content = infoWindow.getContent();
-        //     google.maps.event.trigger(map, 'resize');
-        //     map.panTo(position);
-        //     infoWindow.setContent(content);
-        // }, 500);
     }
 
-    function resetGrid(){
-        $('.square').css("background-color", "transparent");
+    // Resets the pixel grid by changing remvong the pixels
+    function resetPixelGrid(){
         $('#grid-table').empty();
-        var size = $('input[name=grid-size]').val();
-        setUpSquares(size);
+        var gridSize = $('#grid-size-input').val();
+        state.gridSize = gridSize;
+        setupPixelGrid(gridSize);
     }
 
+    // Setup all the pixels in the grid based on the grid size given
+    function setupPixelGrid(gridSize){
+        for ( var i = 0; i < gridSize; i++) {
+            $('#grid-table').append('<tr></tr>');
+            for ( var j = 0; j < gridSize; j++) {
+                $('tr:last-child').append("<td class='pixel'></td>");
+            }
+        }
+    }
+
+    // Downloads the pixelpad image as a png file
     function downloadImage(link){
+
         // Setup an HTML canvas that isn't added to DOM but used to create a png
         // that the user downloads
         var canvas = document.createElement("canvas");
@@ -106,6 +67,7 @@ $(document).ready(function(){
         var data = imgData.data;
 
         for( var i = 0; i < data.length; i += 4){
+
             // Get the background-color css attribute of each grid cell
             var rgba = [];
             var pixel_index = (i / 4);
@@ -125,21 +87,49 @@ $(document).ready(function(){
                 rgba = backgroundColor.split(' ');
             }
 
-
             // Set the canvas pixel data to match the grid cell color
             data[i] = parseInt(rgba[0]); // red
             data[i+1] = parseInt(rgba[1]); // green
             data[i+2] = parseInt(rgba[2]); // blue
             data[i+3] = rgba[3] * 255; // opacity
-
         }
+
+        // Set image data for the canvas image to be downloaded
         imgData.data = data;
         ctx.putImageData(imgData,0,0);
         link.href= canvas.toDataURL();
 
-        //Get file name to save image under
+        // Get file name to save image under
         var fileName = $('#file-name-input').val();
         link.download = fileName ? fileName : 'image.png';
+    }
+
+    // Resizes the pixel grid to fit nicely inside of the #grid-section
+    function resizePixelGrid(){
+        var width = $('#grid-section').width();
+        var height = $('#grid-section').height();
+        if( height < width) {
+            $('#grid-container').height(height - (height * 0.05));
+            $('#grid-container').width(height - (height * 0.05));
+        } else {
+            $('#grid-container').height(width - (width * 0.05));
+            $('#grid-container').width(width - (width * 0.05));
+        }
+    }
+
+    // Toggle grid lines based on grid-toggle checkbox
+    function toggleGridLines(){
+        if( this === document || this.checked) {
+            $('table, th, td ').css('border','1px solid black');
+        } else {
+            $('table, th, td ').css('border','0');
+        }
+    }
+
+    // Updates the grid size input to reflect the value the user has given
+    function updateGridSizeAddon() {
+        var newSize = $(this).val();
+        $('#grid-size-addon').text('x' + newSize);
     }
 
     // Taken from http://www.javascripter.net/faq/hextorgb.htm
@@ -148,27 +138,26 @@ $(document).ready(function(){
     function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16);}
     function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h;}
 
-});
+    // Event listening function calls
+    $(window).on('resize', resizePixelGrid);
+    $('#control-section-button').on('click', changeMenuState);
+    $('#paint-color-input').on('change', updatePaintPreview);
+    $('#paint-opacity-input').on('change', updatePaintPreview);
+    $('#grid-size-input').on('change', updateGridSizeAddon);
+    $('#grid-toggle').on('change', toggleGridLines);
+    $('#reset-grid-button').on('click', resetPixelGrid);
+    $('#download-button').on('click', downloadImage(this));
 
-function setUpSquares(px){
-    for ( var i = 0; i < px; i++) {
-        $('#grid-table').append('<tr></tr>');
-        for ( var j = 0; j < px; j++) {
-            $('tr:last-child').append("<td class='square'></td>");
+    // Painting functions
+    $(document).on('mousedown','.pixel', function(){
+        $(this).css('background-color', state.paintRGBA);
+        state.drawing = true;
+    });
+    $(document).on('mouseover','.pixel', function(){
+        if (state.drawing) {
+            $(this).css('background-color', state.paintRGBA);
         }
-    }
-}
+    });
+    $(document).on('mouseup', function(){ state.drawing = false;});
 
-
-
-function resize(){
-    var width = $('#grid-panel').width();
-    var height = $('#grid-panel').height();
-    if( height < width) {
-        $('#grid-container').height(height - (height * 0.05));
-        $('#grid-container').width(height - (height * 0.05));
-    } else {
-        $('#grid-container').height(width - (width * 0.05));
-        $('#grid-container').width(width - (width * 0.05));
-    }
-}
+});
