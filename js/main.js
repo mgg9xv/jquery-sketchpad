@@ -1,36 +1,16 @@
 $(document).ready(function(){
 
+    // Initialize state
     var state = {
         drawing: false,
         gridSize: 16,
         paintRGBA: 'rgba(0,128,255,1)'
     };
 
+    // Initializing functions
     setupPixelGrid(state.gridSize);
     resizePixelGrid();
     updatePaintPreview();
-
-    // Toggle grid lines based on grid-toggle checkbox
-    $('#grid-toggle').change(function (event) {
-        if(this.checked) {
-            $('table, th, td ').css('border','1px solid black');
-        } else {
-            $('table, th, td ').css('border','0');
-        }
-    });
-
-    $('download-button').on('click', function() {
-        downloadImage(this);
-    });
-
-    $('#reset-grid-button').on('click', resetPixelGrid);
-
-    $('#grid-size-input').change(function updateGridSizeInput(){
-        var newSize = this.value;
-        $('#grid-size-addon').text('x' + newSize);
-    });
-
-
 
     // Updates the paint/paint preview component when color or opacity changes
     function updatePaintPreview() {
@@ -45,8 +25,6 @@ $(document).ready(function(){
         $('#paint-preview').css('background-color', state.paintRGBA);
     }
 
-    $('#control-section-button').click(changeMenuState);
-
     // Animates the menu sidebar to open or close
     function changeMenuState () {
         var controlSection = $('#control-section');
@@ -55,10 +33,11 @@ $(document).ready(function(){
         gridSection.toggleClass('grid-section-visible');
     }
 
-    // Resets the pixel grid by changing remvong the pixels and adding new ones
+    // Resets the pixel grid by changing remvong the pixels
     function resetPixelGrid(){
         $('#grid-table').empty();
-        var gridSize = $('input[name=grid-size]').val();
+        var gridSize = $('#grid-size-input').val();
+        state.gridSize = gridSize;
         setupPixelGrid(gridSize);
     }
 
@@ -138,28 +117,47 @@ $(document).ready(function(){
         }
     }
 
+    // Toggle grid lines based on grid-toggle checkbox
+    function toggleGridLines(){
+        if( this === document || this.checked) {
+            $('table, th, td ').css('border','1px solid black');
+        } else {
+            $('table, th, td ').css('border','0');
+        }
+    }
+
+    // Updates the grid size input to reflect the value the user has given
+    function updateGridSizeAddon() {
+        var newSize = $(this).val();
+        $('#grid-size-addon').text('x' + newSize);
+    }
+
     // Taken from http://www.javascripter.net/faq/hextorgb.htm
     function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16);}
     function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16);}
     function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16);}
     function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h;}
 
-    $('#paint-color-input').change(updatePaintPreview);
-    $('#paint-opacity-input').change(updatePaintPreview);
+    // Event listening function calls
+    $(window).on('resize', resizePixelGrid);
+    $('#control-section-button').on('click', changeMenuState);
+    $('#paint-color-input').on('change', updatePaintPreview);
+    $('#paint-opacity-input').on('change', updatePaintPreview);
+    $('#grid-size-input').on('change', updateGridSizeAddon);
+    $('#grid-toggle').on('change', toggleGridLines);
+    $('#reset-grid-button').on('click', resetPixelGrid);
+    $('#download-button').on('click', downloadImage(this));
 
+    // Painting functions
     $(document).on('mousedown','.pixel', function(){
         $(this).css('background-color', state.paintRGBA);
         state.drawing = true;
     });
-
     $(document).on('mouseover','.pixel', function(){
         if (state.drawing) {
             $(this).css('background-color', state.paintRGBA);
         }
     });
-
     $(document).on('mouseup', function(){ state.drawing = false;});
-
-    $(window).resize(resizePixelGrid);
 
 });
