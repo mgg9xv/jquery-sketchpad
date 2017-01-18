@@ -146,7 +146,7 @@ $(document).ready(function(){
     $('#grid-size-input').on('change', updateGridSizeAddon);
     $('#grid-toggle').on('change', toggleGridLines);
     $('#reset-grid-button').on('click', resetPixelGrid);
-    $('#download-button').on('click', downloadImage(this));
+    $('#download-button').on('click', function(){downloadImage(this);});
 
     // Painting functions
     $(document).on('mousedown','.pixel', function(){
