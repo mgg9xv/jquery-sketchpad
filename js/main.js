@@ -4,7 +4,9 @@ $(document).ready(function(){
     var state = {
         drawing: false,
         gridSize: 16,
-        paintRGBA: 'rgba(0,128,255,1)'
+        paintRGBA: 'rgba(0,128,255,1)',
+        // pixelXBoundary:
+        // pixelYBoundary:
     };
 
     // Initializing functions
@@ -46,7 +48,8 @@ $(document).ready(function(){
         for ( var i = 0; i < gridSize; i++) {
             $('#grid-table').append('<tr></tr>');
             for ( var j = 0; j < gridSize; j++) {
-                $('tr:last-child').append("<td class='pixel'></td>");
+                var pixelId = "x" + j + "y" + i;
+                $('tr:last-child').append("<td id='" + pixelId + "' class='pixel'></td>");
             }
         }
     }
@@ -149,15 +152,27 @@ $(document).ready(function(){
     $('#download-button').on('click', function(){downloadImage(this);});
 
     // Painting functions
-    $(document).on('mousedown','.pixel', function(){
+    $(document).on('mousedown touchstart','.pixel', function(event){
+        event.preventDefault();
         $(this).css('background-color', state.paintRGBA);
         state.drawing = true;
     });
-    $(document).on('mouseover','.pixel', function(){
+    $(document).on('mouseover','.pixel', function(event){
+        event.preventDefault();
         if (state.drawing) {
             $(this).css('background-color', state.paintRGBA);
         }
     });
-    $(document).on('mouseup', function(){ state.drawing = false;});
+    $(document).on('touchmove', '.pixel', function(event){
+        event.preventDefault();
+        var touchedlement = document.elementFromPoint(event.originalEvent.touches[0].clientX, event.originalEvent.touches[0].clientY);
+        if($(touchedlement).hasClass('pixel')){
+            $(touchedlement).css('background-color', state.paintRGBA);
+        }
+    });
+    $(document).on('mouseup touchend', '.pixel', function(event){
+        event.preventDefault();
+        state.drawing = false;
+    });
 
 });
