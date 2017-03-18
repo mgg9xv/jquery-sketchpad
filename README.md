@@ -17,13 +17,12 @@ A simple sketchpad for making favicons and pixel art
 
     ```
     git clone https://github.com/mggwxyz/pixelpad.git
-    
     ```
     
 ## Running the project <a id="running"></a>
 >If you don't care to run the project locally, you can try it out at  [https://mggwxyz.github.io/pixelpad](https://mggwxyz.github.io/pixelpad)
 
-1. Navigate into the newly created `pixelpad` directory
+1. Navigate into the `pixelpad` directory
 
     ```
     cd pixelpad
