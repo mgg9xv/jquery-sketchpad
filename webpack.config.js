@@ -28,7 +28,14 @@ const config = {
             filename: 'bundle.css',
             allChunks: true
         })
-    ]
+    ],
+    devServer: {
+        compress: true,
+        port: 8080,
+        watchOptions: {
+            poll: true
+        }
+    }
 }
 
 module.exports = config;

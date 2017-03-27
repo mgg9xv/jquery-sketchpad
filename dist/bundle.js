@@ -82,9 +82,7 @@ $(document).ready(function(){
     var state = {
         drawing: false,
         gridSize: 16,
-        paintRGBA: 'rgba(0,128,255,1)',
-        // pixelXBoundary:
-        // pixelYBoundary:
+        paintRGBA: 'rgba(0,128,255,1)'
     };
 
     // Initializing functions
