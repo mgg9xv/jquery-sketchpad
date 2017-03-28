@@ -2,41 +2,118 @@
 
 $color-white: #fbfbfb;
 $color-light-gray: #dcdcdc;
+$color-medium-gray: #818181;
 $color-dark-gray: #4a4a4a;
 $color-black: #2b2b2b;
 $color-light-blue: #498bff;
 
+* {
+  box-sizing: border-box;
+}
 
-html,body {
+html, body {
+
   height: 100%;
   weight: 100%;
+
   margin: 0;
   padding: 0;
+
+  font-family: 'VT323', monospace;
+  font-size: 16px;
 }
+
+
 
 table {
   border-collapse: collapse;
 }
 
-th, td {
+tr, td {
   padding: 0;
   border: 1px solid $color-light-gray;
 }
 
-th:hover, td:hover {
-  border: none;
-  outline: 1px solid $color-light-blue;
+td:hover {
+  outline: 4px solid $color-light-blue;
+}
+
+.button {
+  background-color: $color-white;
+  margin: 0;
+  border: 1px solid $color-light-gray;
+  padding: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+
+  &:hover, &:focus {
+    outline: none;
+    border: 1px solid $color-medium-gray;
+  }
+}
+
+.control-panel-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.row-item-1-2 {
+  flex: 0 1 50%;
+  margin: 0 1rem;
+}
+
+.row-item-only {
+  flex: 0 1 100%;
+  margin: 0 1rem;
+}
+
+.form-label {
+  display: block;
+  vertical-align: middle;
+  line-height: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-block {
+  box-sizing: border-box;
+  border: 1px solid $color-light-gray;
+  padding: 0.5rem;
+
+  display: block;
+  width: 100%;
+  min-height: 2rem;
+
+  &:hover, &:focus {
+    border: 1px solid $color-medium-gray;
+  }
+}
+
+
+
+.svg-icon {
+  width: 100%;
+  height: 100%;
 }
 
 #main-navigation {
-  margin: 0;
-  background-color: $color-light-blue;
-  color: $color-white;
-  height: 54px;
+  background-color: $color-white;
+  color: $color-black;
+
+  border: 0;
+  padding: 1rem;
+
+  height: 4rem;
   width: 100%;
+
   align-text: center;
   vertical-align: middle;
-  border-bottom: 1px solid $color-light-gray;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #main-section {
@@ -45,8 +122,8 @@ th:hover, td:hover {
 }
 
 #main-heading {
-  margin: 4px 0 0 0;
   display: inline-block;
+  align-self: center;
 }
 
 #main-container {
@@ -55,11 +132,13 @@ th:hover, td:hover {
   padding: 0;
   margin: 0;
   background-color: $color-white;
-  font-family: 'VT323', monospace;
 }
 
 #paint-preview {
-  border: 1px solid #cccccc;
+  border-top: 2px solid $color-light-gray;
+  border-bottom: 2px solid $color-light-gray;
+  height: 4rem;
+  width: 100%;
   text-align: center;
 }
 
@@ -93,7 +172,6 @@ th:hover, td:hover {
   overflow: hidden;
   background-color: white;
   color: black;
-  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
 }
 
 #control-section {
@@ -103,6 +181,7 @@ th:hover, td:hover {
   width: 100%;
   transition: transform 0.5s;
   transform: translateX(-100%);
+  border-right: 2px solid $color-light-gray;
 }
 
 #control-section.control-section-visible {
@@ -120,9 +199,6 @@ th:hover, td:hover {
   transform: translateX(0%);
 }
 
-.nav-button {
-  margin: 8px 16px;
-}
 
 .full-height {
   height: 100%;

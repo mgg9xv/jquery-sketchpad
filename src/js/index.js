@@ -4,7 +4,7 @@ $(document).ready(function(){
     var state = {
         drawing: false,
         gridSize: 16,
-        paintRGBA: 'rgba(0,128,255,1)'
+        paintRGBA: 'rgba(0,128,255,0.5)'
     };
 
     // Initializing functions
@@ -123,7 +123,7 @@ $(document).ready(function(){
         if( this === document || this.checked) {
             $('table, th, td ').css('border','1px solid black');
         } else {
-            $('table, th, td ').css('border','0');
+            $('table, th, td ').css('border','none');
         }
     }
 

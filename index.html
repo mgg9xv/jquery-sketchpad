@@ -3,120 +3,93 @@
     <head>
         <title>Pixelpad | mggwxyz</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <link href="./images/pixelpad-favicon.png" rel="icon" type="image/x-icon">
+        <link href="images/pixelpad-favicon.ico" rel="icon" type="image/x-icon">
 
         <!-- CSS Dependencies -->
         <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet" type="text/css">
         <link href="./dist/bundle.css" rel="stylesheet" type="text/css">
 
-
     </head>
     <body>
-        <div id="main-container" class="container-fluid">
-            <nav id="main-navigation">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <button id="control-section-button" class="btn btn-default nav-button">
-                            <span class="glyphicon glyphicon-menu-hamburger"></span>
-                        </button>
+        <main id="main-container">
+            <section id="control-section" class="control-section-visible">
+                <nav id="main-navigation">
+                    <h1 id="main-heading">Pixelpad</h1>
+                    <a class="button"
+                       href="https://github.com/mggwxyz/pixelpad">
+                        <img class="svg-icon" src="./images/github-mark.svg">
+                    </a>
+                </nav>
+                <div id="control-panel">
+                    <div class="control-panel-row">
+                        <div id="paint-preview">&nbsp;</div>
                     </div>
-                    <div class="col-xs-6 center-text">
-                        <h1 id="main-heading">pixelpad</h1>
+                    <div class="control-panel-row">
+                        <div class="control-panel-form-group row-item-1-2">
+                            <label for="paint-color-input" class="form-label">Paint Color</label>
+                            <input id="paint-color-input" class="input-block"
+                                type="color"
+                                value="#0080ff">
+                        </div>
+                        <div class="row-item-1-2">
+                            <label for="paint-opacity-input" class="form-label">Paint Opacity</label>
+                            <input id="paint-opacity-input" class="input-block"
+                                aria-describedby="opacity-addon"
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="50">
+                        </div>
                     </div>
-                    <div class="col-xs-3">
-                        <a class="pull-right btn btn-default nav-button"
-                            href="https://github.com/mggwxyz/pixelpad">
-                            <img src="./images/github-mark.svg">
-                        </a>
-                    </div>
-                </div>
-            </nav>
-            <main id="main-section">
-                <section id="control-section">
-                    <div id="control-panel" class="full-height col-xs-12">
-                        <br>
-                        <div class="row form-group">
-                            <div class="col-xs-6">
-                                <label for="paint-color-input">Paint Color</label><br>
-                                <input id="paint-color-input" class="btn-block form-control"
-                                    type="color"
-                                    value="#0080ff">
-                            </div>
-                            <div class="col-xs-6">
-                                <label for="paint-opacity-input">Paint Opacity</label><br>
-                                <div class="input-group">
-                                    <input id="paint-opacity-input" class="btn-block form-control"
-                                        aria-describedby="opacity-addon"
-                                        type="range"
-                                        min="0"
-                                        max="100"
-                                        value="100">
-                                </div>
-                            </div>
+                    <div class="control-panel-row">
+                        <div class="row-item-1-2">
+                            <label for="grid-size-input" class="form-label">Grid Size</label>
+                            <input id="grid-size-input" class="input-block"
+                                type="number"
+                                name="grid-size"
+                                value="16"
+                                min="1"
+                                max="64"
+                            />
                         </div>
-                        <div class="row form-group">
-                            <div class="col-xs-12">
-                                <label>Paint Preview</label>
-                                <div id="paint-preview" class="btn btn-block">&nbsp;</div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-xs-6">
-                                <label for="grid-size-input">Grid Size</label>
-                                <div class="input-group">
-                                    <input id="grid-size-input" class="form-control"
-                                        type="number"
-                                        name="grid-size"
-                                        value="16"
-                                        min="1"
-                                        max="64"
-                                        aria-describedby="grid-size-addon"
-                                    />
-                                    <span class="input-group-addon" id="grid-size-addon">x16</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <br>
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="grid-toggle"
-                                            type="checkbox"
-                                            value=""
-                                            checked
-                                        />
-                                        Grid Lines
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="text-center">
-                                <input id="reset-grid-button" type="button" value="Reset Grid" class="btn btn-default btn-block">
-                            </div>
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="file-name-input">File Name</label>
-                                <input id="file-name-input" class="btn-block form-control"
-                                    type="text"
-                                    placeholder="Ex. favicon.ico"
+                        <div class="row-item-1-2">
+                            <div class="checkbox">
+                                <label class="form-label">
+                                    Grid Lines
+                                </label>
+                                <input id="grid-toggle"
+                                       type="checkbox"
+                                       value=""
+                                       checked
                                 />
                             </div>
-                            <div class="form-group">
-                                <a id="download-button" class="btn btn-primary btn-block text-center" tabindex="0">Download Image</a>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-                <section id="grid-section">
-                    <div id="grid-panel" class="full-height col-xs-12">
-                        <div id="grid-container">
-                            <table id="grid-table"></table>
                         </div>
                     </div>
-                </section>
-            </main>
-        </div>
+                    <div class="control-panel-row">
+                        <input id="reset-grid-button" type="button" value="Reset Grid" class="row-item-only input-block">
+                    </div>
+                    <div class="control-panel-row">
+                        <div class="row-item-only">
+                            <label for="file-name-input" class="form-label">File Name</label>
+                            <input id="file-name-input" class="input-block"
+                                   type="text"
+                                   placeholder="Ex. favicon.ico"
+                            />
+                        </div>
+                    </div>
+                    <form class="control-panel-row text-center">
+                        <a id="download-button" class="row-item-only input-block" tabindex="0">Download Image</a>
+                    </form>
+                </div>
+            </section>
+            <section id="grid-section" class="grid-section-visible">
+                <div id="grid-panel" class="full-height">
+                    <div id="grid-container">
+                        <table id="grid-table"></table>
+                    </div>
+                </div>
+            </section>
+        </main>
 
         <!-- JavaScript Dependencies -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
