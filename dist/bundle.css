@@ -391,12 +391,20 @@ table {
 td {
   background-color: white;
   padding: 0;
-  border: 1px solid #4a4a4a; }
+  border: 1px solid #4a4a4a;
+  outline: 4px solid transparent; }
   td:hover {
     outline: 4px solid #498bff; }
 
+a {
+  text-decoration: none;
+  color: black;
+  border: 1px solid #4a4a4a; }
+  a#download-button:focus, a#download-button:focus {
+    background-color: #498bff; }
+
 .button {
-  background-color: #f5f5f5;
+  background-color: white;
   margin: 0;
   border: 1px solid #eeeeee;
   padding: 0.5rem;
@@ -447,7 +455,8 @@ td {
 #main-navigation {
   background-color: white;
   color: black;
-  border: 0;
+  border: 1px solid #4a4a4a;
+  border-bottom: none;
   padding: 1rem;
   height: 4rem;
   width: 100%;
@@ -478,13 +487,13 @@ td {
   background-color: #eeeeee;
   height: 2rem;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  border-bottom: 1px solid #4a4a4a; }
 
 #grid-toggle {
   vertical-align: middle;
   display: block;
-  text-align: center;
-  font-size: 32px; }
+  text-align: center; }
 
 #grid-panel {
   height: 100%;
@@ -507,7 +516,8 @@ td {
   overflow: hidden;
   background-color: white;
   color: black;
-  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #4a4a4a; }
 
 #control-section {
   z-index: 5;

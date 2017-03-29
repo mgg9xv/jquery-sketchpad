@@ -14,11 +14,15 @@
         <main id="main-container">
             <section id="control-section" class="control-section-visible">
                 <nav id="main-navigation">
+                    <a class="button">
+                        <img id="preview-image" class="svg-icon" src="images/pixelpad-favicon.ico">
+                    </a>
                     <h1 id="main-heading">pixelpad</h1>
                     <a class="button"
                        href="https://github.com/mggwxyz/pixelpad">
                         <img class="svg-icon" src="./images/github-mark.svg">
                     </a>
+
                 </nav>
                 <div id="control-panel">
                     <div class="control-panel-row light-gray">
@@ -34,7 +38,6 @@
                         <div class="row-item-1-2">
                             <label for="paint-opacity-input" class="form-label">Paint Opacity</label>
                             <input id="paint-opacity-input" class="input-block"
-                                aria-describedby="opacity-addon"
                                 type="range"
                                 min="0"
                                 max="100"
@@ -53,16 +56,15 @@
                             />
                         </div>
                         <div class="row-item-1-2">
-                            <div class="checkbox">
-                                <label class="form-label">
-                                    Grid Lines
-                                </label>
-                                <input id="grid-toggle"
-                                       type="checkbox"
-                                       value=""
-                                       checked
-                                />
-                            </div>
+                            <label class="form-label">
+                                Grid Lines
+                            </label>
+                            <input id="grid-toggle" class="input-block"
+                                   type="range"
+                                   min="0"
+                                   max="1"
+                                   value="1"
+                                   step="1">
                         </div>
                     </div>
                     <div class="control-panel-row">
@@ -78,7 +80,7 @@
                         </div>
                     </div>
                     <form class="control-panel-row text-center">
-                        <a id="download-button" class="row-item-only input-block" tabindex="0">Download Image</a>
+                        <a id="download-button" class="row-item-only input-block">Download Image</a>
                     </form>
                 </div>
             </section>
