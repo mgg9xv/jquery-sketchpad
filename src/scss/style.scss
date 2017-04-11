@@ -24,13 +24,17 @@ html, body {
 }
 
 input, select, textarea, button {
+
   font-family: inherit;
   font-size: inherit;
+
 }
 
 table {
+
   border: 1px solid $color-dark-gray;
   border-collapse: collapse;
+
 }
 
 td {
@@ -186,9 +190,34 @@ a {
   max-width: 512px;
 }
 
+
+
 #grid-table {
   width: 100%;
   height: 100%;
+}
+
+#mask-level {
+  width: 100%;
+  height: 0%;
+  background-color: black;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 2;
+}
+
+#preview-image {
+
+  background-color: white;
+  margin: 0.5rem;
+  border: 1px solid $color-light-gray;
+  width: 2rem;
+  height: 2rem;
+
+  &:hover, &:focus {
+    border: 1px solid $color-medium-gray;
+  }
+
 }
 
 #control-panel {
@@ -232,7 +261,15 @@ a {
   text-align: center;
 }
 
-/* Small Devices, Tablets */
+#mask-level {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 2;
+}
+
 @media only screen and (min-width : 768px) {
 
   #control-section {
@@ -261,6 +298,10 @@ a {
   #grid-section.grid-section-visible {
     width: 75%;
     transform: translateX(33.33%);
+  }
+
+  #mask-level {
+    display:none;
   }
 
 }
