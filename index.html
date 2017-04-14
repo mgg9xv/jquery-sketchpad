@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
+
     <head>
+
         <title>Pixelpad | mggwxyz</title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+
         <link href="images/pixelpad-favicon.ico" rel="icon" type="image/x-icon">
 
         <!-- CSS Dependencies -->
@@ -10,6 +15,7 @@
         <link href="./dist/bundle.css" rel="stylesheet" type="text/css">
 
     </head>
+
     <body>
         <main id="main-container">
             <section id="control-section" class="control-section-visible">
@@ -25,7 +31,7 @@
                     <div class="control-panel-row light-gray">
                         <div id="paint-preview">&nbsp;</div>
                     </div>
-                    <div class="control-panel-row">
+                    <div id="primary-tools" class="control-panel-row">
                         <div class="control-panel-form-group row-item-1-2">
                             <label for="paint-color-input" class="form-label">Paint Color</label>
                             <input id="paint-color-input" class="input-block"
@@ -41,44 +47,65 @@
                                 value="50">
                         </div>
                     </div>
-                    <div class="control-panel-row">
-                        <div class="row-item-1-2">
-                            <label for="grid-size-input" class="form-label">Grid Size</label>
-                            <input id="grid-size-input" class="input-block"
-                                type="number"
-                                name="grid-size"
-                                value="16"
-                                min="1"
-                                max="64"
-                            />
+                    <div id="secondary-tools">
+                        <div class="control-panel-row">
+                            <div class="row-item-1-2">
+                                <label for="grid-size-input" class="form-label">Grid Size</label>
+                                <input id="grid-size-input" class="input-block"
+                                       type="number"
+                                       name="grid-size"
+                                       value="16"
+                                       min="1"
+                                       max="64"
+                                />
+                            </div>
+                            <div class="row-item-1-2">
+                                <label class="form-label">
+                                    Grid Lines
+                                </label>
+                                <input id="grid-toggle" class="input-block"
+                                       type="range"
+                                       min="0"
+                                       max="1"
+                                       value="1"
+                                       step="1">
+                            </div>
                         </div>
-                        <div class="row-item-1-2">
-                            <label class="form-label">
-                                Grid Lines
-                            </label>
-                            <input id="grid-toggle" class="input-block"
-                                   type="range"
-                                   min="0"
-                                   max="1"
-                                   value="1"
-                                   step="1">
+                        <div class="control-panel-row">
+                            <input id="reset-grid-button" type="button" value="Reset Grid" class="row-item-only input-block">
                         </div>
-                    </div>
-                    <div class="control-panel-row">
-                        <input id="reset-grid-button" type="button" value="Reset Grid" class="row-item-only input-block">
-                    </div>
-                    <div class="control-panel-row">
-                        <div class="row-item-only">
-                            <label for="file-name-input" class="form-label">File Name</label>
-                            <input id="file-name-input" class="input-block"
-                                   type="text"
-                                   placeholder="Ex. favicon.ico"
-                            />
+                        <div class="control-panel-row">
+                            <div class="row-item-only">
+                                <label for="file-name-input" class="form-label">File Name</label>
+                                <input id="file-name-input" class="input-block"
+                                       type="text"
+                                       placeholder="Ex. favicon.ico"
+                                />
+                            </div>
                         </div>
+                        <form class="control-panel-row text-center">
+                            <a id="download-button" class="row-item-only input-block">Download Image</a>
+                        </form>
                     </div>
-                    <form class="control-panel-row text-center">
-                        <a id="download-button" class="row-item-only input-block">Download Image</a>
-                    </form>
+                    <div class="secondary-tool-button">
+                        <button>
+
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="SVG-Icon">
+                                        <rect id="Rectangle" fill="#D8D8D8" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                                        <g id="more" transform="translate(10.000000, 4.000000)" fill="#000000">
+                                            <circle cx="2" cy="2" r="2"></circle>
+                                            <circle cx="2" cy="8" r="2"></circle>
+                                            <circle cx="2" cy="14" r="2"></circle>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+
+
                 </div>
             </section>
 
