@@ -5,6 +5,7 @@ $(document).ready(function(){
         drawing: false,
         gridSize: 16,
         paintRGBA: 'rgba(0,128,255,0.5)',
+        showFullMenu: false
     };
 
     // Initializing functions
@@ -137,6 +138,18 @@ $(document).ready(function(){
         }
     }
 
+    // Toggle
+    function toggleFullToolMenu(){
+        if( this === document || state.showFullMenu ) {
+            state.showFullMenu = false;
+            $('#secondary-tools').css('display', 'none');
+
+        } else {
+            state.showFullMenu = true;
+            $('#secondary-tools').css('display','block');
+        }
+    }
+
     // Updates the grid size input to reflect the value the user has given
     function updateGridSizeAddon() {
         var newSize = $(this).val();
@@ -158,6 +171,7 @@ $(document).ready(function(){
     $('#grid-toggle').on('change', toggleGridLines);
     $('#reset-grid-button').on('click', resetPixelGrid);
     $('#download-button').on('click', function(){downloadImage(this);});
+    $('#more-tools-button').on('click', toggleFullToolMenu);
 
     // Painting functions
     $(document).on('mousedown touchstart','.pixel', function(event){

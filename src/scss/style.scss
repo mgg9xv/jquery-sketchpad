@@ -269,6 +269,10 @@ a {
   z-index: 2;
 }
 
+#secondary-tools {
+  display: none;
+}
+
 @media only screen and (min-width : 768px) {
 
   #control-section {

@@ -14,7 +14,7 @@ A simple sketchpad for making favicons and pixel art
 
 ## Downloading the project
 
-1. Clone the git repository
+Clone the git repository using a bash terminal
 
     ```
     git clone https://github.com/mggwxyz/pixelpad.git
