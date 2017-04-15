@@ -5,6 +5,7 @@
   "scripts": {
     "start": "http-server",
     "dev-server": "gulp develop",
+    "prod-server": ""
     "deploy": "npm i && gulp build && gh-pages -d dist"
   },
   "repository": {
