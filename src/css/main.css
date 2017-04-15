@@ -535,21 +535,24 @@ a {
   position: absolute;
   z-index: 2; }
 
-#preview-image {
-  background-color: white;
-  margin: 0.5rem;
-  border: 1px solid #eeeeee;
+#preview-image-container {
+  background-color: #eeeeee;
   width: 2rem;
   height: 2rem; }
-  #preview-image:hover, #preview-image:focus {
-    border: 1px solid #818181; }
+
+#preview-image {
+  background-color: white;
+  box-sizing: border-box;
+  margin: 0.5rem;
+  width: 1rem;
+  height: 1rem; }
 
 #control-panel {
-  overflow: hidden;
   background-color: white;
   color: black;
   box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #4a4a4a; }
+  border: 1px solid #4a4a4a;
+  overflow: hidden; }
 
 #control-section {
   z-index: 5;
