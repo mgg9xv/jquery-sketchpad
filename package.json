@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A simple sketch pad for make favicons and pixel art",
   "scripts": {
-    "start": "http-server",
-    "dev-server": "gulp develop",
-    "prod-server": ""
+    "start": "npm i && gulp build && cd dist && http-server -o -p 3000",
+    "dev-server": "npm i && gulp develop",
+    "prod-server": "npm i && gulp build && cd dist && http-server -o -p 3000",
     "deploy": "npm i && gulp build && gh-pages -d dist"
   },
   "repository": {
