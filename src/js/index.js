@@ -143,13 +143,13 @@ $(document).ready(function(){
         if( this === document || state.showFullMenu ) {
             state.showFullMenu = false;
             $('#secondary-tools').css('display', 'none');
-            $('#mask-level').css('display', 'none').removeClass('visible');
+            $('#mask-level').removeClass('visible');
 
 
         } else {
             state.showFullMenu = true;
             $('#secondary-tools').css('display','block');
-            $('#mask-level').css('display', 'block').addClass('visible');
+            $('#mask-level').addClass('visible');
         }
     }
 

@@ -397,16 +397,16 @@ table {
 
 td {
   background-color: white;
-  padding: 0;
+  outline: 4px solid transparent;
   border: 1px solid #4a4a4a;
-  outline: 4px solid transparent; }
+  padding: 0; }
   td:hover {
     outline: 4px solid #498bff; }
 
 a {
-  text-decoration: none;
   color: black;
-  border: 1px solid #4a4a4a; }
+  border: 1px solid #4a4a4a;
+  text-decoration: none; }
   a#download-button:focus, a#download-button:focus {
     background-color: #498bff; }
 
@@ -468,7 +468,6 @@ a {
 #main-navigation {
   background-color: white;
   color: black;
-  border: 1px solid #4a4a4a;
   border-bottom: none;
   padding: 1rem;
   height: 4rem;
@@ -502,8 +501,7 @@ a {
   background-color: #eeeeee;
   height: 2rem;
   width: 100%;
-  text-align: center;
-  border-bottom: 1px solid #4a4a4a; }
+  text-align: center; }
 
 #grid-toggle {
   vertical-align: middle;
@@ -541,7 +539,6 @@ a {
   height: 2rem; }
 
 #preview-image {
-  background-color: white;
   box-sizing: border-box;
   margin: 0.5rem;
   width: 1rem;
@@ -551,7 +548,6 @@ a {
   background-color: white;
   color: black;
   box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #4a4a4a;
   overflow: hidden; }
 
 #control-section {
@@ -613,6 +609,17 @@ a {
   #full-menu-button > svg {
     fill: #ff9c9b; }
 
+#paint-color-input {
+  background-color: #eeeeee; }
+  #paint-color-input:hover {
+    cursor: pointer; }
+
+#reset-grid-button {
+  background-color: #ff7257;
+  color: white; }
+  #reset-grid-button:hover {
+    cursor: pointer; }
+
 @media only screen and (min-width: 768px) {
   #control-section {
     will-change: transform;
@@ -635,4 +642,18 @@ a {
     width: 75%;
     transform: translateX(33.33%); }
   #mask-level {
-    display: none; } }
+    display: none; }
+    #mask-level.visible {
+      display: none; }
+  #full-menu-button-container {
+    display: none; }
+  #secondary-tools {
+    display: block; }
+  #control-section {
+    background-color: white;
+    height: 100%;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2); }
+  #control-panel {
+    box-shadow: none; }
+  #secondary-tools {
+    display: block; } }
