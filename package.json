@@ -4,11 +4,9 @@
   "description": "A simple sketch pad for make favicons and pixel art",
   "main": "./js/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server",
-    "watch": "webpack --progress --watch",
-    "build": "webpack",
-    "prod": "webpack -p"
+    "start": "http-server",
+    "dev-server": "gulp develop",
+    "deploy": "gh-page -d dist"
   },
   "repository": {
     "type": "git",
@@ -27,16 +25,19 @@
   },
   "homepage": "https://github.com/mggwxyz/pixelpad#readme",
   "devDependencies": {
-    "css-loader": "^0.27.3",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "gh-pages": "^0.12.0",
     "http-server": "^0.9.0",
-    "node-sass": "^4.5.1",
-    "sass-loader": "^6.0.3",
-    "style-loader": "^0.16.0",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
-  },
-  "dependencies": {
-    "normalize.css": "^6.0.0"
+    "browser-sync": "^2.17.3",
+    "del": "^2.0.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.6",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.1.2",
+    "gulp-useref": "^3.1.2",
+    "run-sequence": "^1.2.2"
   }
 }

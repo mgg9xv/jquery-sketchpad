@@ -4,7 +4,8 @@ $(document).ready(function(){
     var state = {
         drawing: false,
         gridSize: 16,
-        paintRGBA: 'rgba(0,128,255,1)'
+        paintRGBA: 'rgba(0,128,255,0.5)',
+        showFullMenu: false
     };
 
     // Initializing functions
@@ -52,8 +53,8 @@ $(document).ready(function(){
         }
     }
 
-    // Downloads the pixelpad image as a png file
-    function downloadImage(link){
+    // Gets the image that is drawn on the canvas
+    function getCanvasImage(){
 
         // Setup an HTML canvas that isn't added to DOM but used to create a png
         // that the user downloads
@@ -98,11 +99,21 @@ $(document).ready(function(){
         // Set image data for the canvas image to be downloaded
         imgData.data = data;
         ctx.putImageData(imgData,0,0);
-        link.href= canvas.toDataURL();
+        var previewImage = canvas.toDataURL();
+        $('#preview-image').attr('src', previewImage);
+
+        return previewImage;
+    }
+
+    // Downloads the pixelpad image as a png file
+    function downloadImage(link){
+
+        var previewImage = getCanvasImage();
+        link.href = previewImage;
 
         // Get file name to save image under
         var fileName = $('#file-name-input').val();
-        link.download = fileName ? fileName : 'image.png';
+        link.download = fileName ? fileName : 'favicon.ico';
     }
 
     // Resizes the pixel grid to fit nicely inside of the #grid-section
@@ -120,10 +131,25 @@ $(document).ready(function(){
 
     // Toggle grid lines based on grid-toggle checkbox
     function toggleGridLines(){
-        if( this === document || this.checked) {
+        if( this === document || $('#grid-toggle').val() === "1") {
             $('table, th, td ').css('border','1px solid black');
         } else {
-            $('table, th, td ').css('border','0');
+            $('table, th, td ').css('border','none');
+        }
+    }
+
+    // Toggle
+    function toggleFullToolMenu(){
+        if( this === document || state.showFullMenu ) {
+            state.showFullMenu = false;
+            $('#secondary-tools').css('display', 'none');
+            $('#mask-level').css('display', 'none').removeClass('visible');
+
+
+        } else {
+            state.showFullMenu = true;
+            $('#secondary-tools').css('display','block');
+            $('#mask-level').css('display', 'block').addClass('visible');
         }
     }
 
@@ -148,6 +174,8 @@ $(document).ready(function(){
     $('#grid-toggle').on('change', toggleGridLines);
     $('#reset-grid-button').on('click', resetPixelGrid);
     $('#download-button').on('click', function(){downloadImage(this);});
+    $('#full-menu-button').on('click', toggleFullToolMenu);
+    $('#mask-level').on('click', toggleFullToolMenu);
 
     // Painting functions
     $(document).on('mousedown touchstart','.pixel', function(event){
@@ -171,6 +199,7 @@ $(document).ready(function(){
     $(document).on('mouseup touchend', '.pixel', function(event){
         event.preventDefault();
         state.drawing = false;
+        getCanvasImage();
     });
 
 });
