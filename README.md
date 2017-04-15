@@ -13,21 +13,21 @@ A simple sketchpad for making favicons for your websites as well as pixel art.
 
 ## Setting up the project
 
-Clone the git repository using a bash terminal
+1. Clone the git repository using a bash terminal
 
-```bash
-git clone https://github.com/mggwxyz/pixelpad.git
-```
+    ```bash
+    git clone https://github.com/mggwxyz/pixelpad.git
+    ```
     
-Navigate into the project directory
+1. Navigate into the project directory
 
-```bash
-cd pixelpad
-```
-Start the application
-```bash
-npm start
-```
+    ```bash
+    cd pixelpad
+    ```
+1. Start the application
+    ```bash
+    npm start
+    ```
 ## Using Pixelpad
 
 ### Painting
