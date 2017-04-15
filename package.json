@@ -2,11 +2,10 @@
   "name": "pixelpad",
   "version": "1.0.0",
   "description": "A simple sketch pad for make favicons and pixel art",
-  "main": "./js/main.js",
   "scripts": {
     "start": "http-server",
     "dev-server": "gulp develop",
-    "deploy": "gh-page -d dist"
+    "deploy": "npm i && gulp build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
