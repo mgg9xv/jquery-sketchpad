@@ -143,10 +143,13 @@ $(document).ready(function(){
         if( this === document || state.showFullMenu ) {
             state.showFullMenu = false;
             $('#secondary-tools').css('display', 'none');
+            $('#mask-level').css('display', 'none').removeClass('visible');
+
 
         } else {
             state.showFullMenu = true;
             $('#secondary-tools').css('display','block');
+            $('#mask-level').css('display', 'block').addClass('visible');
         }
     }
 
@@ -171,7 +174,8 @@ $(document).ready(function(){
     $('#grid-toggle').on('change', toggleGridLines);
     $('#reset-grid-button').on('click', resetPixelGrid);
     $('#download-button').on('click', function(){downloadImage(this);});
-    $('#more-tools-button').on('click', toggleFullToolMenu);
+    $('#full-menu-button').on('click', toggleFullToolMenu);
+    $('#mask-level').on('click', toggleFullToolMenu);
 
     // Painting functions
     $(document).on('mousedown touchstart','.pixel', function(event){
