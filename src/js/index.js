@@ -142,13 +142,13 @@ $(document).ready(function(){
     function toggleFullToolMenu(){
         if( this === document || state.showFullMenu ) {
             state.showFullMenu = false;
-            $('#secondary-tools').css('display', 'none');
+            $('#secondary-tools').removeClass('visible');
             $('#mask-level').removeClass('visible');
 
 
         } else {
             state.showFullMenu = true;
-            $('#secondary-tools').css('display','block');
+            $('#secondary-tools').addClass('visible');
             $('#mask-level').addClass('visible');
         }
     }

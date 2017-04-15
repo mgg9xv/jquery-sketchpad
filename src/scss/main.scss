@@ -296,7 +296,13 @@ a {
 
 #secondary-tools {
   display: none;
+
+  &.visible {
+    display: block;
+  }
 }
+
+
 
 #full-menu-button-container {
   display: flex;
