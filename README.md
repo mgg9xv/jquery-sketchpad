@@ -2,14 +2,14 @@
 
 A simple sketchpad for making favicons for your websites as well as pixel art.
 
-**Helpful Links**
-* [Online Demo](https://mggwxyz.github.io/pixelpad)
-* [Source Code](https://github.com/mggwxyz/pixelpad)
-
 ## Table of Contents
 1. [Setting up the project](#setting-up-the-project)
 1. [Using Pixelpad](#using-pixelpad)
 1. [Inspiration](#inspiration)
+
+**Helpful Links**
+* [Online Demo](https://mggwxyz.github.io/pixelpad)
+* [Source Code](https://github.com/mggwxyz/pixelpad)
 
 ## Setting up the project
 
