@@ -588,6 +588,8 @@ a {
 
 #secondary-tools {
   display: none; }
+  #secondary-tools.visible {
+    display: block; }
 
 #full-menu-button-container {
   display: flex;
