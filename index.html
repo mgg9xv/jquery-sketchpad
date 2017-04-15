@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-us">
 
     <head>
@@ -16,16 +16,26 @@
     <body>
         <main id="main-container">
             <section id="control-section" class="control-section-visible">
+
+               <!-- Navigation Bar -->
                 <nav id="main-navigation">
+
+                    <!-- Preview Image -->
                     <div id="preview-image-container">
                         <img id="preview-image" src="images/pixelpad-favicon.ico">
                     </div>
+
+                    <!-- Main Heading -->
                     <h1 id="main-heading">pixelpad</h1>
-                    <a class="button"
+
+                    <!-- Source Code Link -->
+                    <a id="source-code-link" class="button"
                        href="https://github.com/mggwxyz/pixelpad">
                         <img class="svg-icon" src="images/github-mark.svg">
                     </a>
+
                 </nav>
+
                 <div id="control-panel">
                     <div class="control-panel-row light-gray">
                         <div id="paint-preview">&nbsp;</div>
@@ -108,6 +118,7 @@
                 </div>
             </section>
 
+            <!-- Pixelpad Grid -->
             <section id="grid-section" class="grid-section-visible">
                 <div id="grid-panel" class="full-height">
                     <div id="grid-container">
@@ -115,7 +126,10 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Masking Layer -->
             <div id="mask-level"></div>
+
         </main>
 
         <!-- JavaScript Dependencies -->
