@@ -302,6 +302,16 @@ a {
   }
 }
 
+.slider {
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
 
 
 #full-menu-button-container {
