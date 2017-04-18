@@ -1,4 +1,6 @@
-$(document).ready(function(){
+var pixelpad = function(){
+
+    console.log('Starting pixelpad...');
 
     // Initialize state
     var state = {
@@ -15,15 +17,16 @@ $(document).ready(function(){
 
     // Updates the paint/paint preview component when color or opacity changes
     function updatePaintPreview() {
-        var paintColor = $('#paint-color-input').val();
-        var paintOpacity = $('#paint-opacity-input').val();
+
+        var paintColor = document.getElementById('paint-color-input').value;
+        var paintOpacity = document.getElementById('paint-opacity-input').value;
 
         state.paintRGBA = 'rgba(' + hexToR(paintColor) +
             ',' + hexToG(paintColor) +
             ',' + hexToB(paintColor) +
             ',' + paintOpacity / 100 + ')';
 
-        $('#paint-preview').css('background-color', state.paintRGBA);
+        document.getElementById('paint-preview').style.backgroundColor = state.paintRGBA;
     }
 
     // Animates the menu sidebar to open or close
@@ -201,5 +204,10 @@ $(document).ready(function(){
         state.drawing = false;
         getCanvasImage();
     });
+};
 
-});
+if ( document.readyState = 'complete'|| (document.readyState = 'loading' && !document.documentElement.doScroll )) {
+    pixelpad();
+} else {
+    document.addEventListener('DOMContentLoaded', pixelpad );
+}

@@ -10,7 +10,7 @@ $color-light-blue: #498bff;
 $color-light-orange: #ff7257;
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -50,7 +50,7 @@ td {
   padding: 0;
 
   &:hover {
-    outline: 4px solid $color-light-blue;
+      outline: 4px solid $color-light-blue;
   }
 }
 
@@ -62,7 +62,7 @@ a {
   text-decoration: none;
 
   &#download-button:focus, &#download-button:focus {
-    background-color: #498bff;
+      background-color: #498bff;
   }
 }
 
