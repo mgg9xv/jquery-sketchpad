@@ -31,16 +31,18 @@ var pixelpad = function(){
 
     // Animates the menu sidebar to open or close
     function changeMenuState () {
-        var controlSection = $('#control-section');
-        var gridSection = $('#grid-section');
-        controlSection.toggleClass('control-section-visible');
-        gridSection.toggleClass('grid-section-visible');
+
+        var controlSection = document.getElementById('control-section');
+        var gridSection = document.getElementById('grid-section');
+
+        toggleClass(controlSection, 'control-section-visible');
+        toggleClass(gridSection, 'grid-section-visible');
     }
 
     // Resets the pixel grid by changing remvong the pixels
     function resetPixelGrid(){
-        $('#grid-table').empty();
-        var gridSize = $('#grid-size-input').val();
+        document.getElementById('grid-table').innerHTML = '';
+        var gridSize = document.getElementById('grid-size-input').value;
         state.gridSize = gridSize;
         setupPixelGrid(gridSize);
     }
@@ -48,10 +50,15 @@ var pixelpad = function(){
     // Setup all the pixels in the grid based on the grid size given
     function setupPixelGrid(gridSize){
         for ( var i = 0; i < gridSize; i++) {
-            $('#grid-table').append('<tr></tr>');
+            var tableRow = document.createElement('TR');
+            document.getElementById('grid-table').appendChild(tableRow);
             for ( var j = 0; j < gridSize; j++) {
                 var pixelId = "x" + j + "y" + i;
-                $('tr:last-child').append("<td id='" + pixelId + "' class='pixel'></td>");
+                var tableCell = document.createElement('TD');
+                tableCell.id = pixelId;
+                tableCell.className = 'pixel';
+                tableCell.style.backgroundColor = 'rgba(255,255,255,1)';
+                document.querySelector('tr:last-child').appendChild(tableCell);
             }
         }
     }
@@ -76,7 +83,8 @@ var pixelpad = function(){
             // Get the background-color css attribute of each grid cell
             var rgba = [];
             var pixel_index = (i / 4);
-            var backgroundColor = $('tr td:eq(' + pixel_index + ')').css('background-color');
+            var tableCell = document.querySelectorAll('tr > td')[pixel_index];
+            var backgroundColor = tableCell.style.backgroundColor;
 
             // Parse out RGB value from the background-color attribute
             if( backgroundColor.indexOf('rgba') === -1) {
@@ -160,6 +168,18 @@ var pixelpad = function(){
     function updateGridSizeAddon() {
         var newSize = $(this).val();
         $('#grid-size-addon').text('x' + newSize);
+    }
+
+    // Toggle class
+    function toggleClass(element, classToBeToggled){
+        var elementClasses = element.className;
+        var classRegex = new RegExp('\\b' + classToBeToggled + '\\b');
+        var elementHasClass = elementClasses.match(classToBeToggled);
+        if (elementHasClass) {
+            element.className = elementClasses.replace(classRegex, '');
+        } else {
+            element.className = elementClasses + " " + classToBeToggled;
+        }
     }
 
     // Taken from http://www.javascripter.net/faq/hextorgb.htm
