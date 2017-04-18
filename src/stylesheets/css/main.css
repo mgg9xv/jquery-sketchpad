@@ -382,6 +382,7 @@ template {
 html, body {
   height: 100%;
   weight: 100%;
+  border: 0;
   margin: 0;
   padding: 0;
   font-family: 'VT323', monospace;
@@ -450,16 +451,18 @@ a {
   font-size: 1rem;
   margin-bottom: 0.5rem; }
 
+.bordered-input {
+  border: 2px solid #eeeeee; }
+  .bordered-input:hover, .bordered-input:focus {
+    border: 2px solid #818181; }
+
 .input-block {
   box-sizing: border-box;
-  border: 1px solid #eeeeee;
   padding: 0.5rem;
   text-align: center;
   display: block;
   width: 100%;
   min-height: 2rem; }
-  .input-block:hover, .input-block:focus {
-    border: 1px solid #818181; }
 
 .svg-icon {
   width: 100%;
@@ -625,8 +628,13 @@ a {
 #reset-grid-button {
   background-color: #ff7257;
   color: white; }
-  #reset-grid-button:hover {
-    cursor: pointer; }
+
+.button {
+  border: none; }
+  .button:hover {
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08); }
 
 @media only screen and (min-width: 768px) {
   #control-section {
