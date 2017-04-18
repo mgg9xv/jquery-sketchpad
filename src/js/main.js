@@ -221,8 +221,9 @@ var pixelpad = function(){
     // Start painting pixel
     function startPainting(event){
         var element = event.srcElement;
+        var elementClasses = element.className;
         var classRegex = new RegExp('\\bpixel\\b');
-        if( element.className.match(classRegex)) {
+        if( elementClasses.match(classRegex)) {
             element.style.backgroundColor = state.paintRGBA;
             state.drawing = true;
         }
@@ -231,8 +232,9 @@ var pixelpad = function(){
     // Keep painting the pixel
     function keepPainting(event){
         var element = event.srcElement;
+        var elementClasses = element.className;
         var classRegex = new RegExp('\\bpixel\\b');
-        if( element.className.match(classRegex) && state.drawing) {
+        if( elementClasses.match(classRegex) && state.drawing) {
             element.style.backgroundColor = state.paintRGBA;
         }
     }
@@ -240,8 +242,9 @@ var pixelpad = function(){
     // Keep painting the touched pixel
     function keepPaintingTouch(event){
         var touchedElement = document.elementFromPoint(event.originalEvent.touches[0].clientX, event.originalEvent.touches[0].clientY);
+        var elementClasses = touchedElement.className;
         var classRegex = new RegExp('\\bpixel\\b');
-        if( touchedElement.className.match(classRegex) && state.drawing) {
+        if( elementClasses.match(classRegex) && state.drawing) {
             touchedElement.style.backgroundColor = state.paintRGBA;
         }
     }
@@ -249,8 +252,9 @@ var pixelpad = function(){
     // Stop painting the current pixel
     function stopPainting(event){
         var element = event.srcElement;
+        var elementClasses = element.className;
         var classRegex = new RegExp('\\bpixel\\b');
-        if( element.className.match(classRegex)) {
+        if( elementClasses.match(classRegex)) {
             state.drawing = false;
             getCanvasImage();
         }
