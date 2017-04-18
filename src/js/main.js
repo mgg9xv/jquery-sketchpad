@@ -188,7 +188,7 @@ var pixelpad = function(){
 
     // Toggle class
     function toggleClass(element, classToBeToggled){
-        var elementClasses = element.className;
+        var elementClasses = element.className.toString();
         var classRegex = new RegExp('\\b' + classToBeToggled + '\\b');
         var elementHasClass = elementClasses.match(classRegex);
         if (elementHasClass) {
@@ -200,7 +200,7 @@ var pixelpad = function(){
 
     // Add class
     function addClass(element, classToBeAdded){
-        var elementClasses = element.className;
+        var elementClasses = element.className.toString();
         var classRegex = new RegExp('\\b' + classToBeAdded + '\\b');
         var elementDoeNotHaveClass = !(elementClasses.match(classRegex));
         if (elementDoeNotHaveClass) {
@@ -210,7 +210,7 @@ var pixelpad = function(){
 
     // Remove class
     function removeClass(element, classToBeRemoved){
-        var elementClasses = element.className;
+        var elementClasses = element.className.toString();
         var classRegex = new RegExp('\\b' + classToBeRemoved + '\\b');
         var elementHasClass = elementClasses.match(classRegex);
         if (elementHasClass) {
@@ -221,7 +221,7 @@ var pixelpad = function(){
     // Start painting pixel
     function startPainting(event){
         var element = event.srcElement;
-        var elementClasses = element.className;
+        var elementClasses = element.className.toString();
         var classRegex = new RegExp('\\bpixel\\b');
         if( elementClasses.match(classRegex)) {
             element.style.backgroundColor = state.paintRGBA;
@@ -232,7 +232,7 @@ var pixelpad = function(){
     // Keep painting the pixel
     function keepPainting(event){
         var element = event.srcElement;
-        var elementClasses = element.className;
+        var elementClasses = element.className.toString();
         var classRegex = new RegExp('\\bpixel\\b');
         if( elementClasses.match(classRegex) && state.drawing) {
             element.style.backgroundColor = state.paintRGBA;
@@ -242,7 +242,7 @@ var pixelpad = function(){
     // Keep painting the touched pixel
     function keepPaintingTouch(event){
         var touchedElement = document.elementFromPoint(event.originalEvent.touches[0].clientX, event.originalEvent.touches[0].clientY);
-        var elementClasses = touchedElement.className;
+        var elementClasses = touchedElement.className.toString();
         var classRegex = new RegExp('\\bpixel\\b');
         if( elementClasses.match(classRegex) && state.drawing) {
             touchedElement.style.backgroundColor = state.paintRGBA;
@@ -252,7 +252,7 @@ var pixelpad = function(){
     // Stop painting the current pixel
     function stopPainting(event){
         var element = event.srcElement;
-        var elementClasses = element.className;
+        var elementClasses = element.className.toString();
         var classRegex = new RegExp('\\bpixel\\b');
         if( elementClasses.match(classRegex)) {
             state.drawing = false;
