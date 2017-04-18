@@ -147,7 +147,7 @@ var pixelpad = function(){
 
     // Toggle grid lines based on grid-toggle checkbox
     function toggleGridLines(){
-        if( this === document || $('#grid-toggle').val() === "1") {
+        if( this === document || document.getElementById('grid-toggle').value === "1") {
             $('table, th, td ').css('border','1px solid black');
         } else {
             $('table, th, td ').css('border','none');
@@ -157,15 +157,17 @@ var pixelpad = function(){
     // Toggle
     function toggleFullToolMenu(){
         if( this === document || state.showFullMenu ) {
+            var secondaryTools = document.getElementById('secondary-tools');
+            var maskingLayer = document.getElementById('masking-layer');
             state.showFullMenu = false;
-            $('#secondary-tools').removeClass('visible');
-            $('#mask-level').removeClass('visible');
-
-
+            removeClass(secondaryTools, 'visible');
+            removeClass(maskingLayer, 'visible');
         } else {
+            var secondaryTools = document.getElementById('secondary-tools');
+            var maskingLayer = document.getElementById('masking-layer');
             state.showFullMenu = true;
-            $('#secondary-tools').addClass('visible');
-            $('#mask-level').addClass('visible');
+            addClass(secondaryTools, 'visible');
+            addClass(maskingLayer, 'visible');
         }
     }
 
@@ -173,7 +175,7 @@ var pixelpad = function(){
     function toggleClass(element, classToBeToggled){
         var elementClasses = element.className;
         var classRegex = new RegExp('\\b' + classToBeToggled + '\\b');
-        var elementHasClass = elementClasses.match(classToBeToggled);
+        var elementHasClass = elementClasses.match(classRegex);
         if (elementHasClass) {
             element.className = elementClasses.replace(classRegex, '');
         } else {
@@ -181,6 +183,25 @@ var pixelpad = function(){
         }
     }
 
+    // Add class
+    function addClass(element, classToBeAdded){
+        var elementClasses = element.className;
+        var classRegex = new RegExp('\\b' + classToBeAdded + '\\b');
+        var elementDoeNotHaveClass = !(elementClasses.match(classRegex));
+        if (elementDoeNotHaveClass) {
+            element.className = elementClasses + " " + classToBeAdded;
+        }
+    }
+
+    // Remove class
+    function removeClass(element, classToBeRemoved){
+        var elementClasses = element.className;
+        var classRegex = new RegExp('\\b' + classToBeRemoved + '\\b');
+        var elementHasClass = elementClasses.match(classRegex);
+        if (elementHasClass) {
+            element.className = elementClasses.replace(classRegex, '');
+        }
+    }
 
     // Taken from http://www.javascripter.net/faq/hextorgb.htm
     function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16);}
@@ -189,7 +210,7 @@ var pixelpad = function(){
     function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h;}
 
     // Event listening function calls
-    $(window).on('resize', resizePixelGrid);
+    window.onresize =  resizePixelGrid;
     $('#control-section-button').on('click', changeMenuState);
     $('#paint-color-input').on('change', updatePaintPreview);
     $('#paint-opacity-input').on('change', updatePaintPreview);

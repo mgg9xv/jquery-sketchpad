@@ -218,7 +218,7 @@ a {
   height: 100%;
 }
 
-#mask-level {
+#masking-layer {
   width: 100%;
   height: 0%;
   background-color: black;
@@ -290,7 +290,7 @@ a {
   text-align: center;
 }
 
-#mask-level.visible {
+#masking-layer.visible {
   width: 100%;
   height: 100%;
   background-color: black;
@@ -401,7 +401,7 @@ a {
     transform: translateX(33.33%);
   }
 
-  #mask-level {
+  #masking-layer {
     display: none;
 
     &.visible {

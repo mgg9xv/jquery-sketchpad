@@ -528,7 +528,7 @@ a {
   width: 100%;
   height: 100%; }
 
-#mask-level {
+#masking-layer {
   width: 100%;
   height: 0%;
   background-color: black;
@@ -580,7 +580,7 @@ a {
 .center-text {
   text-align: center; }
 
-#mask-level.visible {
+#masking-layer.visible {
   width: 100%;
   height: 100%;
   background-color: black;
@@ -657,9 +657,9 @@ a {
   #grid-section.grid-section-visible {
     width: 75%;
     transform: translateX(33.33%); }
-  #mask-level {
+  #masking-layer {
     display: none; }
-    #mask-level.visible {
+    #masking-layer.visible {
       display: none; }
   #full-menu-button-container {
     display: none; }
