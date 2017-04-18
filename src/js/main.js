@@ -1,7 +1,5 @@
 var pixelpad = function(){
 
-    console.log('Starting pixelpad...');
-
     // Initialize state
     var state = {
         drawing: false,
@@ -203,6 +201,44 @@ var pixelpad = function(){
         }
     }
 
+    // Start painting pixel
+    function startPainting(event){
+        var element = event.srcElement;
+        var classRegex = new RegExp('\\bpixel\\b');
+        if( element.className.match(classRegex)) {
+            element.style.backgroundColor = state.paintRGBA;
+            state.drawing = true;
+        }
+    }
+
+    // Keep painting the pixel
+    function keepPainting(event){
+        var element = event.srcElement;
+        var classRegex = new RegExp('\\bpixel\\b');
+        if( element.className.match(classRegex) && state.drawing) {
+            element.style.backgroundColor = state.paintRGBA;
+        }
+    }
+
+    // Keep painting the touched pixel
+    function keepPaintingTouch(event){
+        var touchedElement = document.elementFromPoint(event.originalEvent.touches[0].clientX, event.originalEvent.touches[0].clientY);
+        var classRegex = new RegExp('\\bpixel\\b');
+        if( touchedElement.className.match(classRegex) && state.drawing) {
+            touchedElement.style.backgroundColor = state.paintRGBA;
+        }
+    }
+
+    // Stop painting the current pixel
+    function stopPainting(event){
+        var element = event.srcElement;
+        var classRegex = new RegExp('\\bpixel\\b');
+        if( element.className.match(classRegex)) {
+            state.drawing = false;
+            getCanvasImage();
+        }
+    }
+
     // Taken from http://www.javascripter.net/faq/hextorgb.htm
     function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16);}
     function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16);}
@@ -211,42 +247,23 @@ var pixelpad = function(){
 
     // Event listening function calls
     window.onresize =  resizePixelGrid;
-    $('#control-section-button').on('click', changeMenuState);
-    $('#paint-color-input').on('change', updatePaintPreview);
-    $('#paint-opacity-input').on('change', updatePaintPreview);
-    $('#grid-toggle').on('change', toggleGridLines);
-    $('#reset-grid-button').on('click', resetPixelGrid);
-    $('#download-button').on('click', function(){downloadImage(this);});
-    $('#full-menu-button').on('click', toggleFullToolMenu);
-    $('#mask-level').on('click', toggleFullToolMenu);
+    document.addEventListener('mousedown', startPainting, false);
+    document.addEventListener('touchstart', startPainting, false);
+    document.addEventListener('mouseover', keepPainting, false);
+    document.addEventListener('touchmove', keepPaintingTouch, false);
+    document.addEventListener('mouseup', stopPainting, false);
+    document.addEventListener('touchend', stopPainting, false);
+    document.getElementById('paint-color-input').addEventListener('change', updatePaintPreview);
+    document.getElementById('paint-opacity-input').addEventListener('change', updatePaintPreview);
+    document.getElementById('grid-toggle').addEventListener('change', toggleGridLines);
+    document.getElementById('reset-grid-button').addEventListener('click', resetPixelGrid);
+    document.getElementById('download-button').addEventListener('click', function(){downloadImage(this);});
+    document.getElementById('full-menu-button').addEventListener('click', toggleFullToolMenu);
+    document.getElementById('masking-layer').addEventListener('click', toggleFullToolMenu);
 
-    // Painting functions
-    $(document).on('mousedown touchstart','.pixel', function(event){
-        event.preventDefault();
-        $(this).css('background-color', state.paintRGBA);
-        state.drawing = true;
-    });
-    $(document).on('mouseover','.pixel', function(event){
-        event.preventDefault();
-        if (state.drawing) {
-            $(this).css('background-color', state.paintRGBA);
-        }
-    });
-    $(document).on('touchmove', '.pixel', function(event){
-        event.preventDefault();
-        var touchedlement = document.elementFromPoint(event.originalEvent.touches[0].clientX, event.originalEvent.touches[0].clientY);
-        if($(touchedlement).hasClass('pixel')){
-            $(touchedlement).css('background-color', state.paintRGBA);
-        }
-    });
-    $(document).on('mouseup touchend', '.pixel', function(event){
-        event.preventDefault();
-        state.drawing = false;
-        getCanvasImage();
-    });
 };
 
-if ( document.readyState = 'complete'|| (document.readyState = 'loading' && !document.documentElement.doScroll )) {
+if ( document.readyState = 'complete' || (document.readyState = 'loading' && !document.documentElement.doScroll )) {
     pixelpad();
 } else {
     document.addEventListener('DOMContentLoaded', pixelpad );
