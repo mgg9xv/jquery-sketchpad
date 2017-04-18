@@ -146,14 +146,22 @@ var pixelpad = function(){
     // Toggle grid lines based on grid-toggle checkbox
     function toggleGridLines(){
         if( this === document || document.getElementById('grid-toggle').value === "1") {
-            var elements = document.getElementsByTagName('TD');
+            var cells = document.getElementsByTagName('TD');
             for( var i = 0; i < elements.length; i++ ){
-                elements[i].style.border = '1px solid black';
+                cells[i].style.border = '1px solid black';
+            }
+            var rows = document.getElementsByTagName('TR');
+            for( var i = 0; i < cells.length; i++ ){
+                rows[i].style.border = '1px solid black';
             }
         } else {
-            var elements = document.getElementsByTagName('TD');
-            for( var i = 0; i < elements.length; i++ ){
-                elements[i].style.border = 'none';
+            var cells = document.getElementsByTagName('TD');
+            for( var i = 0; i < cells.length; i++ ){
+                cells[i].style.border = 'none';
+            }
+            var rows = document.getElementsByTagName('TR');
+            for( var i = 0; i < rows.length; i++ ){
+                rows[i].style.border = 'none';
             }
         }
     }
