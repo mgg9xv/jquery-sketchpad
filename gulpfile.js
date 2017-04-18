@@ -11,6 +11,9 @@ var uglify = require('gulp-uglify');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
+var sourcemaps   = require('gulp-sourcemaps');
+var postcssFlexboxfixer = require('postcss-flexboxfixer');
+
 
 gulp.task('browserSync', function(){
     browserSync.init({
@@ -31,11 +34,13 @@ gulp.task('compile-scss-to-css', function(){
 
 gulp.task('perform-postcss', function () {
     var plugins = [
-        autoprefixer({browsers: ['last 1 version']}),
+        autoprefixer('last 2 version'),
         cssnano()
     ];
     return gulp.src('src/stylesheets/css/*.css')
-        .pipe(postcss(plugins))
+        .pipe(sourcemaps.init())
+        .pipe(postcss([ postcssFlexboxfixer, autoprefixer()]))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/stylesheets/css'));
 });
 
