@@ -111,7 +111,8 @@ var pixelpad = function(){
         imgData.data = data;
         ctx.putImageData(imgData,0,0);
         var previewImage = canvas.toDataURL();
-        $('#preview-image').attr('src', previewImage);
+        var previewImageElement = document.getElementById('preview-image');
+        previewImageElement.setAttribute('src', previewImage);
 
         return previewImage;
     }
@@ -123,20 +124,24 @@ var pixelpad = function(){
         link.href = previewImage;
 
         // Get file name to save image under
-        var fileName = $('#file-name-input').val();
+        var fileName = document.getElementById('file-name-input').value;
         link.download = fileName ? fileName : 'favicon.ico';
     }
 
     // Resizes the pixel grid to fit nicely inside of the #grid-section
     function resizePixelGrid(){
-        var width = $('#grid-section').width();
-        var height = $('#grid-section').height();
+        var width = document.getElementById('grid-section').clientWidth;
+        var height = document.getElementById('grid-section').clientHeight;
+
+        var gridContainerElement = document.getElementById('grid-container');
         if( height < width) {
-            $('#grid-container').height(height - (height * 0.05));
-            $('#grid-container').width(height - (height * 0.05));
+            var newHeight = height - (height * 0.05) + "px";
+            var newWidth = height - (height * 0.05) + "px";
+            gridContainerElement.style.height = newHeight;
+            gridContainerElement.style.width = newWidth;
         } else {
-            $('#grid-container').height(width - (width * 0.05));
-            $('#grid-container').width(width - (width * 0.05));
+            gridContainerElement.style.height = width - (width * 0.05) + "px";
+            gridContainerElement.style.width = width - (width * 0.05) + "px";
         }
     }
 
@@ -164,12 +169,6 @@ var pixelpad = function(){
         }
     }
 
-    // Updates the grid size input to reflect the value the user has given
-    function updateGridSizeAddon() {
-        var newSize = $(this).val();
-        $('#grid-size-addon').text('x' + newSize);
-    }
-
     // Toggle class
     function toggleClass(element, classToBeToggled){
         var elementClasses = element.className;
@@ -182,6 +181,7 @@ var pixelpad = function(){
         }
     }
 
+
     // Taken from http://www.javascripter.net/faq/hextorgb.htm
     function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16);}
     function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16);}
@@ -193,7 +193,6 @@ var pixelpad = function(){
     $('#control-section-button').on('click', changeMenuState);
     $('#paint-color-input').on('change', updatePaintPreview);
     $('#paint-opacity-input').on('change', updatePaintPreview);
-    $('#grid-size-input').on('change', updateGridSizeAddon);
     $('#grid-toggle').on('change', toggleGridLines);
     $('#reset-grid-button').on('click', resetPixelGrid);
     $('#download-button').on('click', function(){downloadImage(this);});
