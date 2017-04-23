@@ -153,7 +153,7 @@ var pixelpad = function(){
                 cells[i].style.border = borderStyle;
             }
             var rows = document.getElementsByTagName('TR');
-            for( var i = 0; i < cells.length; i++ ){
+            for( var i = 0; i < rows.length; i++ ){
                 rows[i].style.border = borderStyle;
             }
         } else {
@@ -241,7 +241,7 @@ var pixelpad = function(){
 
     // Keep painting the touched pixel
     function keepPaintingTouch(event){
-        var touchedElement = document.elementFromPoint(event.originalEvent.touches[0].clientX, event.originalEvent.touches[0].clientY);
+        var touchedElement = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
         var elementClasses = touchedElement.className.toString();
         var classRegex = new RegExp('\\bpixel\\b');
         if( elementClasses.match(classRegex) && state.drawing) {
