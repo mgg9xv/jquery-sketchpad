@@ -600,6 +600,20 @@ a {
 .slider:active {
   cursor: grabbing; }
 
+#source-code-link {
+  box-sizing: border-box;
+  border: 2px solid #eeeeee;
+  height: 2rem;
+  width: 2rem;
+  padding: 0.4rem; }
+  #source-code-link svg > .icon {
+    fill: #eeeeee; }
+  #source-code-link:hover, #source-code-link:focus {
+    border: 2px solid #498bff;
+    cursor: pointer; }
+    #source-code-link:hover svg > .icon, #source-code-link:focus svg > .icon {
+      fill: #498bff; }
+
 #full-menu-button-container {
   display: flex;
   flex-direction: row;

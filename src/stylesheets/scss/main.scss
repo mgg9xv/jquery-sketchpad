@@ -318,6 +318,27 @@ a {
   }
 }
 
+#source-code-link {
+   box-sizing: border-box;
+   border: 2px solid $color-light-gray;
+   height: 2rem;
+   width: 2rem;
+   padding: 0.4rem;
+
+  svg > .icon {
+    fill: $color-light-gray;
+  }
+
+   &:hover, &:focus {
+
+     border: 2px solid $color-light-blue;
+     cursor: pointer;
+
+     svg > .icon {
+       fill: $color-light-blue;
+     }
+   }
+}
 
 
 #full-menu-button-container {
